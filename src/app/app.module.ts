@@ -10,8 +10,6 @@ import { ReportsListComponent } from './project-details/reports-list/reports-lis
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectDetailsComponent,
-    ReportsListComponent
   ],
   imports: [
     BrowserModule,

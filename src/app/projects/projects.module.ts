@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ProjectsComponent} from './projects.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
+import {ProjectDetailsModule} from '../project-details/project-details.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ProjectItemComponent } from './project-item/project-item.component';
     ProjectItemComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ProjectDetailsModule
   ]
 })
 export class ProjectsModule { }
