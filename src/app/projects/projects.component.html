@@ -1,3 +1,10 @@
-<p>
-  projects works!
-</p>
+<div class="d-flex">
+  <div class="card mx-auto mt-3" style="width: 50%;">
+    <div class="card-header">
+      <h4>Available Projects</h4>
+    </div>
+    <div *ngFor="let project of projectsList">
+      <app-project-item [project]="project"></app-project-item>
+    </div>
+  </div>
+</div>

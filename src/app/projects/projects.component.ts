@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProjectModel} from './models/ProjectModel';
+import {ProjectsService} from './services/projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-
-  constructor() { }
+  projectsList: ProjectModel[];
+  constructor(private service: ProjectsService) { }
 
   ngOnInit() {
+    this.service.fetchProjectsList().then((list: ProjectModel[]) => this.projectsList = list);
   }
 
 }
