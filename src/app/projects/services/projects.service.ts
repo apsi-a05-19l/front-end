@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ProjectModel} from '../models/project.model';
+import {mockProjects} from '../mock-data/mock-projects';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +10,6 @@ export class ProjectsService {
   constructor() { }
 
   fetchProjectsList(): Promise<ProjectModel[]> {
-    return Promise.resolve([
-      {
-        id: 1,
-        name: 'DripSens',
-      },
-      {
-        id: 2,
-        name: 'Prąd do serca',
-      },
-      {
-        id: 3,
-        name: 'Gods Eye',
-      }
-    ]);
+    return Promise.resolve(mockProjects);
   }
 }
