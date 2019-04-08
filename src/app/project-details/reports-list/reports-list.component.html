@@ -1,0 +1,10 @@
+<div class="d-flex">
+  <div class="card mx-auto text-dark" style="width: 80%;">
+    <div class="card-header d-flex">
+      <h5 class="card-title mx-auto">Recent Reports</h5>
+    </div>
+    <div class="card-body" *ngFor="let report of list">
+      <span class="badge badge-secondary">{{report.author}}</span> {{report.text}}
+    </div>
+  </div>
+</div>

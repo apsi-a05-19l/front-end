@@ -1,0 +1,12 @@
+<div class="card text-white bg-primary" style="margin-top: 5%; margin-left: 5%; margin-right: 5%">
+  <div class="card-header d-flex">
+    <h1 *ngIf="project" class="card-title mx-auto mt-3">{{project.name}}</h1>
+  </div>
+  <div class="card-body">
+    <div class="d-flex mb-5">
+      <h2 *ngIf="project" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
+    </div>
+    <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
+  </div>
+</div>
+
