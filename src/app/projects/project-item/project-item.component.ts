@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProjectModel} from '../models/ProjectModel';
+import {ProjectModel} from '../models/project.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-project-item',
@@ -8,9 +9,12 @@ import {ProjectModel} from '../models/ProjectModel';
 })
 export class ProjectItemComponent implements OnInit {
   @Input() project: ProjectModel;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  onProjectButtonClick() {
+    this.router.navigate(['project/' + this.project.id]);
+  }
 }
