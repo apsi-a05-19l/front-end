@@ -1,0 +1,33 @@
+<div class="d-flex">
+  <div class="card mx-auto mt-3" style="width: 50%;">
+    <div class="card-header">
+      <h4>Members of Club</h4>
+    </div>
+    <div class="card">
+      <div class="card-body d-flex">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Organisation status</th>
+            <th scope="col">Points</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let member of membersList">
+            <th scope="row">{{ member.id }}</th>
+            <td>{{ member.name }}</td>
+            <td>{{ member.surname }}</td>
+            <td>{{  member.organisationStatus }}</td>
+            <td>{{ member.points }}</td>
+            <app-members-item [member]="member"></app-members-item>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
