@@ -9,10 +9,10 @@
           <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Organisation status</th>
-            <th scope="col">Points</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+            <th scope="col" sortable="surname" (sort)="onSort($event)">Surname</th>
+            <th scope="col" sortable="organisationStatus" (sort)="onSort($event)">Organisation status</th>
+            <th scope="col" sortable="points" (sort)="onSort($event)">Points</th>
             <th scope="col"></th>
           </tr>
           </thead>
