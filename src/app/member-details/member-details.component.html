@@ -1,0 +1,12 @@
+<div class="card text-white bg-primary" style="margin-top: 5%; margin-left: 5%; margin-right: 5%">
+  <div class="card-header d-flex">
+    <h1 *ngIf="member" class="card-title mx-auto mt-3">{{member.name}} {{member.surname}}</h1>
+  </div>
+  <div class="card-body">
+    <div class="d-flex mb-5">
+      <h2 *ngIf="member" class="card-title mx-auto mt-3">{{member.organisationStatus}}</h2>
+      <h3 *ngIf="member" class="card-title mx-auto mt-3">Liczba punktów: {{member.points}}</h3>
+    </div>
+    <app-activities-list [list]="member.activities" *ngIf="member && member.activities"></app-activities-list>
+  </div>
+</div>

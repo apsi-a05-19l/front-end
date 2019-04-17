@@ -1,0 +1,23 @@
+<div class="d-flex">
+  <div class="card mx-auto text-dark" style="width: 80%;">
+    <div class="card-header d-flex">
+      <h5 class="card-title mx-auto">Member activities</h5>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Activities</th>
+        <th scope="col">Number of points</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of list; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ activity.activityName }}</td>
+        <td>{{ activity.activityPoints }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

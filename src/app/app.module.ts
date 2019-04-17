@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ProjectsModule} from './projects/projects.module';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ReportsListComponent } from './project-details/reports-list/reports-list.component';
+import { MembersModule } from './members/members.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,8 @@ import { ReportsListComponent } from './project-details/reports-list/reports-lis
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProjectsModule
+    ProjectsModule,
+    MembersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
