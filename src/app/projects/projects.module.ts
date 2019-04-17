@@ -9,9 +9,6 @@ import {ProjectDetailsModule} from '../project-details/project-details.module';
     ProjectsComponent,
     ProjectItemComponent,
   ],
-  exports: [
-    ProjectItemComponent
-  ],
   imports: [
     CommonModule,
     ProjectDetailsModule

@@ -14,7 +14,8 @@ export class MembersItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onProjectButtonClick() {
+  onMemberButtonClick() {
     this.router.navigate(['member/' + this.member.id]);
   }
 }
+

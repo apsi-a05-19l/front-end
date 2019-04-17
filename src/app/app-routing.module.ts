@@ -15,11 +15,6 @@ const routes: Routes = [
     component: ProjectDetailsComponent,
   },
   {
-    path: '',
-    redirectTo: '/projects',
-    pathMatch: 'full'
-  },
-  {
     path: 'members',
     component: MembersComponent,
   },
