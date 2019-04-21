@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {ProjectsModule} from './projects/projects.module';
 import { MembersModule } from './members/members.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MembersModule } from './members/members.module';
     BrowserModule,
     AppRoutingModule,
     ProjectsModule,
-    MembersModule
+    MembersModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,8 +5,21 @@
   <div class="card-body">
     <div class="d-flex mb-5">
       <h2 *ngIf="project" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
+      <div class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
     </div>
     <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
   </div>
 </div>
 
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add report form</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        Put form here
+      </div>
+    </form>
+  </div>
+</ng-template>
