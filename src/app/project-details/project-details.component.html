@@ -18,8 +18,17 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        Put form here
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Report Content</span>
+          </div>
+          <textarea [(ngModel)]="reportToEdit.text" name="text" class="form-control"></textarea>
+        </div>
       </div>
     </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary ml-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary " (click)="saveReport(modal)">Save</div>
   </div>
 </ng-template>
