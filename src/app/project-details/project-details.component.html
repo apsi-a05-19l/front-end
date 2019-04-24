@@ -5,8 +5,30 @@
   <div class="card-body">
     <div class="d-flex mb-5">
       <h2 *ngIf="project" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
+      <div class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
     </div>
     <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
   </div>
 </div>
 
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add report form</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Report Content</span>
+          </div>
+          <textarea [(ngModel)]="reportToEdit.text" name="text" class="form-control"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary ml-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary " (click)="saveReport(modal)">Save</div>
+  </div>
+</ng-template>
