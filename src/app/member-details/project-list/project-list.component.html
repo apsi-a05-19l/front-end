@@ -1,0 +1,23 @@
+<div class="d-flex">
+  <div class="card mx-auto text-dark" style="width: 80%;">
+    <div class="card-header d-flex">
+      <h5 class="card-title mx-auto">Member projects</h5>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name of project</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let project of list; index as i">
+        <th scope="row" style="width: 7%">{{ i + 1 }}</th>
+        <td style="width: 65%">{{ project.name }}</td>
+        <app-project-button [project]="project"></app-project-button>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
