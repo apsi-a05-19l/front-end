@@ -1,7 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+
+<div class="card mx-auto mt-3 bg-secondary text-white" style="width: 98%; height: 60pt">
+  <div style="text-align:center; ">
+    <h5></h5>
+      <h1>
+        Welcome to {{ title }}!
+      </h1>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
+<div id="gridContainer">
+  <div class="row">
+    <div class="col-2"><app-sidebar></app-sidebar></div>
+    <div class="col-10"><router-outlet></router-outlet></div>
+  </div>
+</div>

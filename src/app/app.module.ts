@@ -6,10 +6,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {ProjectsModule} from './projects/projects.module';
 import { MembersModule } from './members/members.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

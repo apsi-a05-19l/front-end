@@ -1,4 +1,5 @@
 import {ActivitiesModel} from './activities.model';
+import {ProjectModel} from '../../projects/models/project.model';
 
 export class MemberDetailsModel {
   id: number;
@@ -7,4 +8,5 @@ export class MemberDetailsModel {
   organisationStatus: string;
   points: number;
   activities: ActivitiesModel[];
+  projects: ProjectModel[];
 }

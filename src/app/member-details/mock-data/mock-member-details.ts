@@ -18,6 +18,12 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
         activityName: 'Promowanie koła na Dniach Otwartych PW',
         activityPoints: 5
       }
+    ],
+    projects: [
+      {
+        id: 1,
+        name: 'DripSens'
+      }
     ]
   },
   {
@@ -42,6 +48,16 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
         activityName: 'Prowadzenie eventu w Krakowie',
         activityPoints: 10
       },
+    ],
+    projects: [
+      {
+        id: 1,
+        name: 'DripSens'
+      },
+      {
+        id: 2,
+        name: 'Prąd do serca'
+      }
     ]
   },
   {
@@ -61,6 +77,16 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
         activityName: 'Prowadzenie eventu w Krakowie',
         activityPoints: 10
       },
+    ],
+    projects: [
+      {
+        id: 2,
+        name: 'Prąd do serca'
+      },
+      {
+        id: 3,
+        name: 'Gods Eye'
+      }
     ]
   },
   {
@@ -85,6 +111,20 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
         activityName: 'Prowadzenie eventu na Stadionie Narodowym',
         activityPoints: 10
       },
+    ],
+    projects: [
+      {
+        id: 1,
+        name: 'DripSens'
+      },
+      {
+        id: 2,
+        name: 'Prąd do serca'
+      },
+      {
+        id: 3,
+        name: 'Gods Eye'
+      }
     ]
   }
 ];

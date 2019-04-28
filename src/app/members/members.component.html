@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="card mx-auto mt-3" style="width: 50%;">
+  <div class="card mx-auto" style="width: 95%;">
     <div class="card-header">
       <h4>Members of Club</h4>
     </div>
@@ -18,11 +18,11 @@
           </thead>
           <tbody>
           <tr *ngFor="let member of membersList">
-            <th scope="row">{{ member.id }}</th>
-            <td>{{ member.name }}</td>
-            <td>{{ member.surname }}</td>
-            <td>{{  member.organisationStatus }}</td>
-            <td>{{ member.points }}</td>
+            <th scope="row" style="width: 7%">{{ member.id }}</th>
+            <td style="width: 17%">{{ member.name }}</td>
+            <td style="width: 17%">{{ member.surname }}</td>
+            <td style="width: 22%">{{  member.organisationStatus }}</td>
+            <td style="width: 12%">{{ member.points }}</td>
             <app-members-item [member]="member"></app-members-item>
           </tr>
           </tbody>

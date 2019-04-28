@@ -1,4 +1,4 @@
-<div class="card text-white bg-primary" style="margin-top: 5%; margin-left: 5%; margin-right: 5%">
+<div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.51%">
   <div class="card-header d-flex">
     <h1 *ngIf="member" class="card-title mx-auto mt-3">{{member.name}} {{member.surname}}</h1>
   </div>
@@ -8,5 +8,38 @@
       <h3 *ngIf="member" class="card-title mx-auto mt-3">Liczba punktów: {{member.points}}</h3>
     </div>
     <app-activities-list [list]="member.activities" *ngIf="member && member.activities"></app-activities-list>
+    <div class="d-flex m-4">
+    <div class="btn btn-light m-auto" style="text-align:center" (click)="addMemberActivity(content)"><h5>Add Activities</h5></div>
+    </div>
+    <app-project-list [list]="member.projects" *ngIf="member && member.projects"></app-project-list>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Add activities</h5>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Activity content</span>
+          </div>
+          <textarea [(ngModel)]="activitiesToEdit.activityName" name="activityName" class="form-control"></textarea>
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Points</span>
+          </div>
+          <input type="number" [(ngModel)]="activitiesToEdit.activityPoints" name="activityName" min = 1 max = 50>
+<!--          <ng-number-picker [(ngModel)]="activitiesToEdit.activityPoints" name="number" class="form-control"></ng-number-picker> -->
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary" (click)="saveActivity(modal)">Save</div>
+  </div>
+</ng-template>

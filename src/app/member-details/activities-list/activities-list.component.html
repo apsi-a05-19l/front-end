@@ -13,9 +13,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let activity of list; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ activity.activityName }}</td>
-        <td>{{ activity.activityPoints }}</td>
+        <th scope="row" style="width: 7%">{{ i + 1 }}</th>
+        <td style="width: 65%">{{ activity.activityName }}</td>
+        <td style="width: 28%">{{ activity.activityPoints }}</td>
       </tr>
       </tbody>
     </table>
