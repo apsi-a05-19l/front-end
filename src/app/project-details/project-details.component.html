@@ -8,6 +8,7 @@
       <div class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
     </div>
     <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
+    <app-members-list [list]="project.members" *ngIf="project && project.reports"></app-members-list>
   </div>
 </div>
 

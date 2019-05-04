@@ -4,7 +4,6 @@ import {MemberDetailsService} from './services/members-details.service';
 import {MemberDetailsModel} from './models/member-details.model';
 import {ActivitiesModel} from './models/activities.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ProjectDetailsModel} from '../project-details/models/project-details.model';
 
 @Component({
   selector: 'app-member-details',

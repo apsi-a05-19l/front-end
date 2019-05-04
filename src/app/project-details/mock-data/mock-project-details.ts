@@ -16,6 +16,23 @@ export const mockProjectDetails: ProjectDetailsModel[] = [
         text: 'Second DripSens report',
         author: 'Krzysztof Apolinarski'
       }
+    ],
+    members: [
+      {
+        id: 1,
+        name: 'Krzysztof',
+        surname: 'Apolinarski'
+      },
+      {
+        id: 2,
+        name: 'Agnieszka',
+        surname: 'Dąbrowska'
+      },
+      {
+        id: 4,
+        name: 'Mateusz',
+        surname: 'Kopeć'
+      }
     ]
   },
   {
@@ -33,6 +50,23 @@ export const mockProjectDetails: ProjectDetailsModel[] = [
         text: 'Second Prąd do serca report',
         author: 'Agnieszka Dąbrowska'
       }
+    ],
+    members: [
+      {
+        id: 2,
+        name: 'Agnieszka',
+        surname: 'Dąbrowska'
+      },
+      {
+        id: 3,
+        name: 'Karol',
+        surname: 'Pąperski'
+      },
+      {
+        id: 4,
+        name: 'Mateusz',
+        surname: 'Kopeć'
+      }
     ]
   },
   {
@@ -49,6 +83,18 @@ export const mockProjectDetails: ProjectDetailsModel[] = [
         id: 2,
         text: 'Second Gods Eye report',
         author: 'Daniel Marczak',
+      }
+    ],
+    members: [
+      {
+        id: 3,
+        name: 'Karol',
+        surname: 'Pąperski'
+      },
+      {
+        id: 4,
+        name: 'Mateusz',
+        surname: 'Kopeć'
       }
     ]
   }
