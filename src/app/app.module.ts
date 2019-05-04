@@ -7,11 +7,13 @@ import {ProjectsModule} from './projects/projects.module';
 import { MembersModule } from './members/members.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    WelcomePageComponent,
   ],
   imports: [
     BrowserModule,
