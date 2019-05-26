@@ -5,6 +5,7 @@ import {ProjectDetailsComponent} from './project-details/project-details.compone
 import { MembersComponent } from './members/members.component';
 import {MemberDetailsComponent} from './member-details/member-details.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: '',
     component: WelcomePageComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ];
 

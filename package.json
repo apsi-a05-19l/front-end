@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "ng-number-picker": "^1.1.9",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
