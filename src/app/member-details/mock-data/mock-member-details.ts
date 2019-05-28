@@ -10,13 +10,13 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
     activities: [
       {
         id: 1,
-        activityName: 'Udział w Hackathon WAWCODE',
-        activityPoints: 15
+        name: 'Udział w Hackathon WAWCODE',
+        points: 15
       },
       {
         id: 2,
-        activityName: 'Promowanie koła na Dniach Otwartych PW',
-        activityPoints: 5
+        name: 'Promowanie koła na Dniach Otwartych PW',
+        points: 5
       }
     ],
     projects: [
@@ -35,18 +35,18 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
     activities: [
       {
         id: 1,
-        activityName: 'Prowadzenie eventu na Stadionie Narodowym',
-        activityPoints: 10
+        name: 'Prowadzenie eventu na Stadionie Narodowym',
+        points: 10
       },
       {
         id: 2,
-        activityName: 'Promowanie koła na Dniach Otwartych PW',
-        activityPoints: 5
+        name: 'Promowanie koła na Dniach Otwartych PW',
+        points: 5
       },
       {
         id: 3,
-        activityName: 'Prowadzenie eventu w Krakowie',
-        activityPoints: 10
+        name: 'Prowadzenie eventu w Krakowie',
+        points: 10
       },
     ],
     projects: [
@@ -69,13 +69,13 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
     activities: [
       {
         id: 1,
-        activityName: 'Promowanie koła na Dniach Otwartych PW',
-        activityPoints: 5
+        name: 'Promowanie koła na Dniach Otwartych PW',
+        points: 5
       },
       {
         id: 2,
-        activityName: 'Prowadzenie eventu w Krakowie',
-        activityPoints: 10
+        name: 'Prowadzenie eventu w Krakowie',
+        points: 10
       },
     ],
     projects: [
@@ -98,18 +98,18 @@ export const  mockMemberDetails: MemberDetailsModel[] = [
     activities: [
       {
         id: 1,
-        activityName: 'Udział w Hackathon WAWCODE',
-        activityPoints: 15
+        name: 'Udział w Hackathon WAWCODE',
+        points: 15
       },
       {
         id: 2,
-        activityName: 'Promowanie koła na Dniach Otwartych PW',
-        activityPoints: 5
+        name: 'Promowanie koła na Dniach Otwartych PW',
+        points: 5
       },
       {
         id: 3,
-        activityName: 'Prowadzenie eventu na Stadionie Narodowym',
-        activityPoints: 10
+        name: 'Prowadzenie eventu na Stadionie Narodowym',
+        points: 10
       },
     ],
     projects: [

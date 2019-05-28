@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectDetailsService} from './services/project-details.service';
 import {ProjectDetailsModel} from './models/project-details.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ export class ProjectDetailsComponent implements OnInit {
   projectId: number;
   reportToEdit: ReportModel;
 
-  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal) { }
+  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
     this.reportToEdit = new ReportModel();
@@ -36,8 +36,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   saveReport(content) {
-    this.service.saveReport(this.reportToEdit).then((report) => console.log(report));
+    this.service.saveReport(this.reportToEdit);
     content.close();
+    this.router.navigate(['projects']);
   }
 
 }

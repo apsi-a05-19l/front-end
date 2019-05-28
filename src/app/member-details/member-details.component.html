@@ -26,19 +26,20 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Activity content</span>
           </div>
-          <textarea [(ngModel)]="activitiesToEdit.activityName" name="activityName" class="form-control"></textarea>
+          <textarea [(ngModel)]="activitiesToEdit.name" name="activityName" class="form-control"></textarea>
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
             <span class="input-group-text">Points</span>
           </div>
-          <input type="number" [(ngModel)]="activitiesToEdit.activityPoints" name="activityName" min = 1 max = 50>
+          <input type="number" [(ngModel)]="activitiesToEdit.points" name="activityName" min = 1 max = 50>
 <!--          <ng-number-picker [(ngModel)]="activitiesToEdit.activityPoints" name="number" class="form-control"></ng-number-picker> -->
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
+<!--    <div class="btn btn-secondary m1-auto" (click)="deleteMember(modal)">Cancel</div>-->
     <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="saveActivity(modal)">Save</div>
   </div>

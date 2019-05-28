@@ -1,5 +1,5 @@
 export class ActivitiesModel {
   id: number;
-  activityName: string;
-  activityPoints: number;
+  name: string;
+  points: number;
 }

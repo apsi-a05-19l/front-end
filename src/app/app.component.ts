@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'APSI Club';
-
+  image = '../../assets/informatyka1.jpg';
   constructor(private router: Router) {
   }
 

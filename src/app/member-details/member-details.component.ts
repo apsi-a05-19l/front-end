@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MemberDetailsService} from './services/members-details.service';
 import {MemberDetailsModel} from './models/member-details.model';
 import {ActivitiesModel} from './models/activities.model';
@@ -14,7 +14,7 @@ export class MemberDetailsComponent implements OnInit {
   member: MemberDetailsModel;
   memberID: number;
   activitiesToEdit: ActivitiesModel;
-  constructor(private route: ActivatedRoute, private service: MemberDetailsService, private modalService: NgbModal) { }
+  constructor(private route: ActivatedRoute, private service: MemberDetailsService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
     this.activitiesToEdit = new ActivitiesModel();
@@ -31,8 +31,15 @@ export class MemberDetailsComponent implements OnInit {
   }
 
   saveActivity(content) {
-    this.service.saveActivity(this.activitiesToEdit).then((activity) => console.log(activity));
+    this.activitiesToEdit.id = 10;
+    this.service.saveActivity(this.activitiesToEdit);
     content.close();
+  }
+
+  deleteMember(content) {
+    this.service.deleteMember(this.memberID);
+    content.close();
+    this.router.navigate(['members']);
   }
 
 }

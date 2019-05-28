@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { MemberModel } from '../models/member.model';
-import { mockMembers } from '../mock-data/mock-members';
+import {HttpClient} from '@angular/common/http';
+import {serverAddress} from '../../../assets/server.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  fetchMembersLists(): Promise<MemberModel[]> {
-    return Promise.resolve(mockMembers);
+  fetchMembersLists(): Promise<any> {
+    return this.http.get(serverAddress + '/members').toPromise();
   }
 
 

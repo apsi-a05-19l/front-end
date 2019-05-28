@@ -1,22 +1,21 @@
 import {Injectable} from '@angular/core';
-import {ProjectDetailsModel} from '../models/project-details.model';
-import {mockProjectDetails} from '../mock-data/mock-project-details';
 import {ReportModel} from '../models/report.model';
+import {HttpClient} from '@angular/common/http';
+import {serverAddress} from '../../../assets/server.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectDetailsService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  fetchProject(projectId: number): Promise<ProjectDetailsModel> {
-    const projectToReturn: ProjectDetailsModel = mockProjectDetails.filter(project => project.id === projectId)[0];
-    return Promise.resolve(projectToReturn);
+  fetchProject(projectId: number): Promise<any> {
+    return this.http.get(serverAddress + '/projects/' + projectId).toPromise();
   }
 
-  saveReport(reportToSave: ReportModel): Promise<ReportModel> {
-    return Promise.resolve(reportToSave);
+  saveReport(reportToSave: ReportModel) {
+    this.http.post(serverAddress + '/report', reportToSave);
   }
 }
