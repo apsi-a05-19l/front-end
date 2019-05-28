@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ProjectsComponent} from './projects.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import {ProjectDetailsModule} from '../project-details/project-details.module';
+import {HttpClient} from '@angular/common/http';
 
 @NgModule({
   declarations: [
