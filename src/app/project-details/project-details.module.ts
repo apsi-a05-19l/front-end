@@ -4,6 +4,7 @@ import {ProjectDetailsComponent} from './project-details.component';
 import {ReportsListComponent} from './reports-list/reports-list.component';
 import {FormsModule} from '@angular/forms';
 import {MembersListComponent} from './members-list/members-list.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {MembersListComponent} from './members-list/members-list.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
 export class ProjectDetailsModule { }

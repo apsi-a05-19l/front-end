@@ -36,9 +36,8 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   saveReport(content) {
-    this.service.saveReport(this.reportToEdit);
+    this.service.saveReport(this.reportToEdit, this.projectId).then((report) => console.log(report));
     content.close();
     this.router.navigate(['projects']);
   }
-
 }
