@@ -12,6 +12,9 @@
     <div class="btn btn-light m-auto" style="text-align:center" (click)="addMemberActivity(content)"><h5>Add Activities</h5></div>
     </div>
     <app-project-list [list]="member.projects" *ngIf="member && member.projects"></app-project-list>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteMember()"><h5>Delete member</h5></div>
+    </div>
   </div>
 </div>
 

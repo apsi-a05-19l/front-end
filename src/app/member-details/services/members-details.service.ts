@@ -44,4 +44,8 @@ export class MemberDetailsService {
   deleteMember(memberID: number) {
     return this.http.delete<void>(serverAddress + '/members/' + memberID).pipe(catchError(this.handleError));
   }
+
+  updateActivity(activityToUpdate: ActivitiesModel): Promise<ActivitiesModel> {
+    return Promise.resolve(activityToUpdate);
+  }
 }

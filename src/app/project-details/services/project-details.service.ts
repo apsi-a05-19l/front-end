@@ -44,4 +44,8 @@ export class ProjectDetailsService {
   deleteProject(projectID: number) {
     return this.http.delete<void>(serverAddress + '/projects/' + projectID).pipe(catchError(this.handleError));
   }
+
+  updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {
+    return Promise.resolve(reportToUpdate);
+  }
 }

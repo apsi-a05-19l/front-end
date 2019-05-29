@@ -7,10 +7,33 @@
       <div class="card-body" *ngFor="let report of list">
         <div class="row">
           <div class="col-2"> <span class="badge badge-secondary">{{report.author}}</span></div>
-          <div class="col-9"> {{report.text}} </div>
+          <div class="col-8"> {{report.text}} </div>
+          <div class="col-1"> <img class="mr-auto" (click)="clickOnEdit(report, content)" [src]="image1" alt="Welcome image" width="20 pt"> </div>
           <div class="col-1"> <img class="mr-auto" (click)="clickOnBin(report.id)" [src]="image" alt="Welcome image" width="20 pt"> </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add report form</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Report Content</span>
+          </div>
+          <textarea [(ngModel)]="reportToEdit.text" name="text" class="form-control"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary ml-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary " (click)="updateReport(modal)">Save</div>
+  </div>
+</ng-template>

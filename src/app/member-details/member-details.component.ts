@@ -37,9 +37,13 @@ export class MemberDetailsComponent implements OnInit {
     this.router.navigate(['members']);
   }
 
-  deleteMember(content) {
-    this.service.deleteMember(this.memberID);
-    content.close();
+  deleteMember() {
+    if (this.member.activities != null) {
+      for (const activity of this.member.activities) {
+        this.service.deleteActivity(activity.id).subscribe();
+      }
+    }
+    this.service.deleteMember(this.memberID).subscribe();
     this.router.navigate(['members']);
   }
 
