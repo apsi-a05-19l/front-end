@@ -40,4 +40,8 @@ export class ProjectDetailsService {
   deleteReport(reportID: number) {
     return this.http.delete<void>(serverAddress + '/report/' + reportID).pipe(catchError(this.handleError));
   }
+
+  deleteProject(projectID: number) {
+    return this.http.delete<void>(serverAddress + '/projects/' + projectID).pipe(catchError(this.handleError));
+  }
 }

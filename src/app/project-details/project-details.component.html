@@ -9,6 +9,9 @@
     </div>
     <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
     <app-members-list [list]="project.members" *ngIf="project && project.reports"></app-members-list>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteProject()"><h5>Delete project</h5></div>
+    </div>
   </div>
 </div>
 

@@ -40,4 +40,14 @@ export class ProjectDetailsComponent implements OnInit {
     content.close();
     this.router.navigate(['projects']);
   }
+
+  deleteProject() {
+    if (this.project.reports != null) {
+      for (const report of this.project.reports) {
+        this.service.deleteReport(report.id).subscribe();
+      }
+    }
+    this.service.deleteProject(this.projectId).subscribe();
+    this.router.navigate(['projects']);
+  }
 }

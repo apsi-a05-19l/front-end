@@ -9,13 +9,15 @@
         <th scope="col">#</th>
         <th scope="col">Activities</th>
         <th scope="col">Number of points</th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let activity of list; index as i">
         <th scope="row" style="width: 7%">{{ i + 1 }}</th>
         <td style="width: 65%">{{ activity.name }}</td>
-        <td style="width: 28%">{{ activity.points }}</td>
+        <td style="width: 24%">{{ activity.points }}</td>
+        <td style="width: 4%"><img class="mr-auto" (click)="clickOnBin(activity.id)" [src]="image" alt="Welcome image" width="20 pt"></td>
       </tr>
       </tbody>
     </table>
