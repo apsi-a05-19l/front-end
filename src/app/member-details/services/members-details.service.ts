@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ActivitiesModel} from '../models/activities.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {MemberModel} from '../../members/models/member.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,8 @@ export class MemberDetailsService {
     return this.http.get(serverAddress + '/members/' + memberId).toPromise();
   }
 
-  saveActivity(activityToSave: ActivitiesModel) {
-    this.http.post(serverAddress + '/activity/' + activityToSave.id, activityToSave);
+  saveActivity(activityToSave: ActivitiesModel, memberID: number): Promise<any> {
+    return this.http.post(serverAddress + '/activity/' + memberID, activityToSave).toPromise();
   }
 
   deleteMember(memberID: number) {

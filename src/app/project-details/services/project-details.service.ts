@@ -15,7 +15,7 @@ export class ProjectDetailsService {
     return this.http.get(serverAddress + '/projects/' + projectId).toPromise();
   }
 
-  saveReport(reportToSave: ReportModel) {
-    this.http.post(serverAddress + '/report', reportToSave);
+  saveReport(reportToSave: ReportModel): Promise<any> {
+    return this.http.post(serverAddress + '/report', reportToSave).toPromise();
   }
 }
