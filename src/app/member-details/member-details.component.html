@@ -12,6 +12,12 @@
     <div class="btn btn-light m-auto" style="text-align:center" (click)="addMemberActivity(content)"><h5>Add Activities</h5></div>
     </div>
     <app-project-list [list]="member.projects" *ngIf="member && member.projects"></app-project-list>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="editMember(content1)"><h5>Edit member</h5></div>
+    </div>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteMember()"><h5>Delete member</h5></div>
+    </div>
   </div>
 </div>
 
@@ -42,5 +48,42 @@
 <!--    <div class="btn btn-secondary m1-auto" (click)="deleteMember(modal)">Cancel</div>-->
     <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="saveActivity(modal)">Save</div>
+  </div>
+</ng-template>
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Add member</h5>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Member name</span>
+          </div>
+          <input type="text" [(ngModel)]="member.name" name="firstname" class="form-control">
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Member surname</span>
+          </div>
+          <input type="text" [(ngModel)]="member.surname" name="surname" class="form-control">
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Member organisation status</span>
+          </div>
+          <input type="text" [(ngModel)]="member.organisationStatus" name="organisationStatus" class="form-control">
+          <!--           <select class="custom-select ml-5" [value]="memberToEdit.organisationStatus" (change)="changeLeaderID($event.target.value)">-->
+          <!--              <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>-->
+          <!--           </select>-->
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-primary" (click)="updateMember(modal)">Save</div>
   </div>
 </ng-template>

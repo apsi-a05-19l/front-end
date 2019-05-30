@@ -1,10 +1,75 @@
 <div class="d-flex">
   <div class="card mx-auto" style="width: 95%;">
     <div class="card-header">
-      <h4>Available Projects</h4>
+      <div id="gridContainer">
+        <div class="row">
+          <div class="col-10"> <h4 class="card-title mr-auto ml-4">Available Projects</h4> </div>
+          <div class="col-2"> <div class="btn btn-primary m-auto" style="text-align:center" (click)="onAddProjectButtonClick(content)"><h5>Add project</h5></div> </div>
+        </div>
+      </div>
     </div>
     <div *ngFor="let project of projectsList">
       <app-project-item [project]="project"></app-project-item>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title m-auto" id="modal-basic-title" style="text-align: center">Add project</h5>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Project name</span>
+          </div>
+          <input type="text" [(ngModel)]="projectToEdit.name" name="name" class="form-control">
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Project leader</span>
+          </div>
+          <select class="custom-select ml-5" [value]="leaderID" (change)="changeLeaderID($event.target.value)">
+            <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-primary" (click)="saveProject(modal)">Save</div>
+  </div>
+</ng-template>
+
+<!--<ng-template #content let-modal>-->
+<!--  <div class="modal-header">-->
+<!--    <h4 class="modal-title" id="modal-basic-title">Add project form</h4>-->
+<!--  </div>-->
+<!--  <div class="modal-body">-->
+<!--    <form>-->
+<!--      <div class="form-group">-->
+<!--        <div class="input-group">-->
+<!--          <div class="input-group-prepend">-->
+<!--            <span class="input-group-text">Project name</span>-->
+<!--          </div>-->
+<!--          <input text="text" [(ngModel)]="projectToEdit.name" name="name" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="input-group mt-2">-->
+<!--          <div class="input-group-prepend">-->
+<!--            <span class="input-group-text">Project leader</span>-->
+<!--          </div>-->
+<!--          <select class="custom-select ml-5" [value]="leaderID" (change)="changeLeaderID($event.target.value)">-->
+<!--            <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--  <div class="modal-footer">-->
+<!--    <div class="btn btn-secondary ml-auto" (click)="modal.close()">Cancel</div>-->
+<!--    <div class="btn btn-primary " (click)="saveProject(modal)">Save</div>-->
+<!--  </div>-->
+<!--</ng-template>-->

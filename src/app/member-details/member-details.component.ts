@@ -30,16 +30,30 @@ export class MemberDetailsComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  saveActivity(content) {
-    this.activitiesToEdit.id = 10;
-    this.service.saveActivity(this.activitiesToEdit);
-    content.close();
+  editMember(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title1'});
   }
 
-  deleteMember(content) {
-    this.service.deleteMember(this.memberID);
+  saveActivity(content) {
+    this.activitiesToEdit.id = null;
+    this.service.saveActivity(this.activitiesToEdit, this.memberID).then((activity) => console.log(activity));
     content.close();
     this.router.navigate(['members']);
+  }
+
+  deleteMember() {
+    if (this.member.activities != null) {
+      for (const activity of this.member.activities) {
+        this.service.deleteActivity(activity.id).subscribe();
+      }
+    }
+    this.service.deleteMember(this.memberID).subscribe();
+    this.router.navigate(['members']);
+  }
+
+  updateMember(content) {
+    this.service.updateMember(this.member).then((member) => console.log(member));
+    content.close();
   }
 
 }
