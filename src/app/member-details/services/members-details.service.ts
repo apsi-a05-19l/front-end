@@ -48,4 +48,8 @@ export class MemberDetailsService {
   updateActivity(activityToUpdate: ActivitiesModel): Promise<ActivitiesModel> {
     return Promise.resolve(activityToUpdate);
   }
+
+  updateMember(memberToSave: MemberModel): Promise<MemberModel> {
+    return Promise.resolve(memberToSave);
+  }
 }

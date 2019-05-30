@@ -30,6 +30,10 @@ export class MemberDetailsComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
+  editMember(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title1'});
+  }
+
   saveActivity(content) {
     this.activitiesToEdit.id = null;
     this.service.saveActivity(this.activitiesToEdit, this.memberID).then((activity) => console.log(activity));
@@ -45,6 +49,11 @@ export class MemberDetailsComponent implements OnInit {
     }
     this.service.deleteMember(this.memberID).subscribe();
     this.router.navigate(['members']);
+  }
+
+  updateMember(content) {
+    this.service.updateMember(this.member).then((member) => console.log(member));
+    content.close();
   }
 
 }

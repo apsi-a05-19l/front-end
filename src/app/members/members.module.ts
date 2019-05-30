@@ -4,6 +4,7 @@ import  { MembersComponent } from './members.component';
 import { MembersItemComponent } from './members-item/members-item.component';
 import {NgbdSortableHeader} from './sortable.directive';
 import {MemberDetailsModule} from '../member-details/member-details.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {MemberDetailsModule} from '../member-details/member-details.module';
   ],
   imports: [
     CommonModule,
-    MemberDetailsModule
+    MemberDetailsModule,
+    FormsModule
   ]
 })
 export class MembersModule { }

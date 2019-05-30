@@ -4,6 +4,7 @@ import {ProjectDetailsService} from './services/project-details.service';
 import {ProjectDetailsModel} from './models/project-details.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ReportModel} from './models/report.model';
+import {MemberModel} from '../members/models/member.model';
 
 @Component({
   selector: 'app-project-details',
@@ -13,13 +14,17 @@ import {ReportModel} from './models/report.model';
 export class ProjectDetailsComponent implements OnInit {
   project: ProjectDetailsModel;
   projectId: number;
+  membersList: MemberModel[];
+  leaderID: number;
   reportToEdit: ReportModel;
 
   constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
     this.reportToEdit = new ReportModel();
+    this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
     this.fetchProjectInfo();
+    this.leaderID = this.membersList.filter((member) => this.project.currentLeader === (member.name + ' ' + member.surname))[0].id;
   }
 
   fetchProjectInfo() {
@@ -33,6 +38,10 @@ export class ProjectDetailsComponent implements OnInit {
 
   addProjectReport(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  editProject(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title1'});
   }
 
   saveReport(content) {
@@ -49,5 +58,15 @@ export class ProjectDetailsComponent implements OnInit {
     }
     this.service.deleteProject(this.projectId).subscribe();
     this.router.navigate(['projects']);
+  }
+
+  changeLeaderID(ID: number) {
+    this.leaderID = Number(ID);
+  }
+
+  updateProject(content) {
+    this.service.updateProject(this.project, this.leaderID).then((project) => console.log(project));
+    content.close();
+    this.router.navigate(['']);
   }
 }

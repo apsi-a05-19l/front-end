@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {ProjectModel} from '../../projects/models/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ProjectDetailsService {
     return this.http.get(serverAddress + '/projects/' + projectId).toPromise();
   }
 
+  fetchMembersLists(): Promise<any> {
+    return this.http.get(serverAddress + '/members').toPromise();
+  }
+
   saveReport(reportToSave: ReportModel, projectId: number): Promise<any> {
     return this.http.post(serverAddress + '/report/' + projectId, reportToSave).toPromise();
   }
@@ -47,5 +52,9 @@ export class ProjectDetailsService {
 
   updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {
     return Promise.resolve(reportToUpdate);
+  }
+
+  updateProject(projectToSave: ProjectModel, leaderID: number): Promise<any> {
+    return Promise.resolve(projectToSave);
   }
 }
