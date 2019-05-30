@@ -20,4 +20,8 @@ export class SidebarComponent implements OnInit {
   onMembersButtonClick() {
     this.router.navigate(['members']);
   }
+
+  onLoginButtonClick() {
+    this.router.navigate(['login']);
+  }
 }
