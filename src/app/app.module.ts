@@ -11,6 +11,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './AuthInterceptor';
 import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { LoginComponent } from './login/login.component';
     ProjectsModule,
     MembersModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
