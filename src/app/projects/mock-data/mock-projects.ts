@@ -3,7 +3,7 @@ import {ProjectModel} from '../models/project.model';
 export const mockProjects: ProjectModel[] = [
   {
     id: 1,
-    name: 'DripSens',
+    name: 'DripSens'
   },
   {
     id: 2,

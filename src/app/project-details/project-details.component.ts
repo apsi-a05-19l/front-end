@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectDetailsService} from './services/project-details.service';
 import {ProjectDetailsModel} from './models/project-details.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ReportModel} from './models/report.model';
 import {MemberModel} from '../members/models/member.model';
+import {SelectMemberModel} from '../projects/models/SelectMemberModel';
 
 @Component({
   selector: 'app-project-details',
@@ -14,18 +15,22 @@ import {MemberModel} from '../members/models/member.model';
 export class ProjectDetailsComponent implements OnInit {
   project: ProjectDetailsModel;
   projectId: number;
-  membersList: MemberModel[];
+  membersList: SelectMemberModel[];
   leaderID: number;
   reportToEdit: ReportModel;
   memberIdToAdd: number;
 
-  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) { }
+  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) {
+  }
 
   ngOnInit() {
-    this.reportToEdit = new ReportModel();
-    this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
     this.fetchProjectInfo();
-    this.leaderID = this.membersList.filter((member) => this.project.currentLeader === (member.name + ' ' + member.surname))[0].id;
+    this.reportToEdit = new ReportModel();
+    this.membersList = [];
+    this.service.fetchMembersLists().then((list: MemberModel[]) => {
+      list.forEach(member => this.membersList.push(new SelectMemberModel(member)));
+      this.leaderID = this.membersList.find((member) => this.project.currentLeader === member.fullName).id;
+    });
   }
 
   fetchProjectInfo() {
@@ -74,9 +79,6 @@ export class ProjectDetailsComponent implements OnInit {
     this.router.navigate(['projects']);
   }
 
-  changeLeaderID(ID: number) {
-    this.leaderID = Number(ID);
-  }
 
   updateProject(content) {
     this.service.updateProject(this.project, this.leaderID).then((project) => console.log(project));
