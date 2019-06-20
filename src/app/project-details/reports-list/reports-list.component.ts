@@ -12,8 +12,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ReportsListComponent implements OnInit {
   @Input() list: ReportModel[];
   reportToEdit: ReportModel;
-  image = '../../../../assets/kosz.jpg';
-  image1 = '../../../../assets/pobrane.jpg';
+  image = '../../../assets/kosz.jpg';
+  image1 = '../../../assets/pobrane.jpg';
   constructor(private service: ProjectDetailsService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
