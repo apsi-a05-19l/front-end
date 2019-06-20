@@ -36,9 +36,9 @@ export class MemberDetailsComponent implements OnInit {
 
   saveActivity(content) {
     this.activitiesToEdit.id = null;
-    this.service.saveActivity(this.activitiesToEdit, this.memberID).then((activity) => console.log(activity));
+    this.service.saveActivity(this.activitiesToEdit, this.memberID).then();
     content.close();
-    this.router.navigate(['members']);
+    this.fetchMemberInfo();
   }
 
   deleteMember() {
