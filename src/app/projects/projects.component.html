@@ -23,13 +23,13 @@
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Project name</span>
+            <span class="input-group-text">Name</span>
           </div>
           <input type="text" [(ngModel)]="projectToEdit.name" name="name" class="form-control">
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
-            <span class="input-group-text">Project leader</span>
+            <span class="input-group-text">Leader</span>
           </div>
           <select class="custom-select ml-5" [value]="leaderID" (change)="changeLeaderID($event.target.value)">
             <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
