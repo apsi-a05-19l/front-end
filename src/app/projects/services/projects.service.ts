@@ -20,7 +20,7 @@ export class ProjectsService {
     return this.http.get(serverAddress + '/members').toPromise();
   }
 
-  saveProject(projectToSave: ProjectModel, leaderID: number): Promise<any> {
-    return this.http.post(serverAddress + '/projects/' + leaderID, projectToSave).toPromise();
+  saveProject(projectToSave: ProjectModel): Promise<any> {
+    return this.http.post(serverAddress + '/projects', projectToSave).toPromise();
   }
 }
