@@ -6,6 +6,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectButtonComponent } from './project-button/project-button.component';
 import {NumberPickerModule} from 'ng-number-picker';
 import {FormsModule} from '@angular/forms';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    NumberPickerModule
+    NumberPickerModule,
+    AngularFontAwesomeModule,
   ]
 })
 export class MemberDetailsModule { }
