@@ -30,6 +30,10 @@ export class ProjectDetailsService {
       'Something bad happened; please try again later.');
   };
 
+  addMemberToProject(memberId: number): Promise<any> {
+    return Promise.resolve(memberId);
+  }
+
   fetchProject(projectId: number): Promise<any> {
     return this.http.get(serverAddress + '/projects/' + projectId).toPromise();
   }

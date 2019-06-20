@@ -17,6 +17,7 @@ export class ProjectDetailsComponent implements OnInit {
   membersList: MemberModel[];
   leaderID: number;
   reportToEdit: ReportModel;
+  memberIdToAdd: number;
 
   constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) { }
 
@@ -34,6 +35,19 @@ export class ProjectDetailsComponent implements OnInit {
         this.project = project;
         this.reportToEdit.author = project.currentLeader;
       });
+  }
+
+  onAddMemberToProject(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title2'});
+  }
+
+  addMemberToProject(content) {
+    this.service.addMemberToProject(this.memberIdToAdd).then((member) => console.log(member));
+    content.close();
+  }
+
+  changeMemberID(ID: number) {
+    this.memberIdToAdd = Number(ID);
   }
 
   addProjectReport(content) {
