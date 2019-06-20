@@ -45,20 +45,20 @@
 
 <ng-template #content1 let-modal>
   <div class="modal-header">
-    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Add project</h5>
+    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Edit project</h5>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Project name</span>
+            <span class="input-group-text">Name</span>
           </div>
           <input type="text" [(ngModel)]="project.name" name="name" class="form-control">
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
-            <span class="input-group-text">Project leader</span>
+            <span class="input-group-text">Leader</span>
           </div>
           <select class="custom-select ml-5" [value]="leaderID" (change)="changeLeaderID($event.target.value)">
             <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
@@ -68,7 +68,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="updateProject(modal)">Save</div>
   </div>
 </ng-template>

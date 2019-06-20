@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="d-flex mb-5">
       <h2 *ngIf="member" class="card-title mx-auto mt-3">{{member.organisationStatus}}</h2>
-      <h3 *ngIf="member" class="card-title mx-auto mt-3">Liczba punktów: {{member.points}}</h3>
+      <h3 *ngIf="member" class="card-title mx-auto mt-3">Points Number: {{member.points}}</h3>
     </div>
     <app-activities-list [list]="member.activities" *ngIf="member && member.activities"></app-activities-list>
     <div class="d-flex m-4">
@@ -83,7 +83,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="updateMember(modal)">Save</div>
   </div>
 </ng-template>
