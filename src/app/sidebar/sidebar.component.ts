@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  image = '../../assets/logo_inf.jpg';
 
   constructor(private router: Router) { }
 
