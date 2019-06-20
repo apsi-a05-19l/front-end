@@ -46,21 +46,24 @@
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member name</span>
+            <span class="input-group-text">First name</span>
           </div>
           <input type="text" [(ngModel)]="memberToEdit.name" name="firstname" class="form-control">
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member surname</span>
+            <span class="input-group-text">Surname</span>
           </div>
           <input type="text" [(ngModel)]="memberToEdit.surname" name="surname" class="form-control">
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member organisation status</span>
+            <span class="input-group-text">Organisation status</span>
           </div>
-          <input type="text" [(ngModel)]="memberToEdit.organisationStatus" name="organisationStatus" class="form-control">
+          <select class="form-control" id="organisationStatus" [(ngModel)]="organisationStatusId">
+            <option *ngFor="let organisationSt of organisationStatusList" [ngValue]="organisationSt.id"> {{ organisationSt.name }}</option>
+          </select>
+<!--          <input type="text" [(ngModel)]="memberToEdit.organisationStatus" name="organisationStatus" class="form-control">-->
 <!--           <select class="custom-select ml-5" [value]="memberToEdit.organisationStatus" (change)="changeLeaderID($event.target.value)">-->
 <!--              <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>-->
 <!--           </select>-->
@@ -69,7 +72,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="saveMember(modal)">Save</div>
   </div>
 </ng-template>

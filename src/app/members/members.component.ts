@@ -2,7 +2,6 @@ import { Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { MemberModel } from './models/member.model';
 import { MembersService } from './services/members.service';
 import {NgbdSortableHeader, SortEvent} from './sortable.directive';
-import { mockMembers } from './mock-data/mock-members';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 export const compare = (v1, v2) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
@@ -14,6 +13,8 @@ export const compare = (v1, v2) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 })
 
 export class MembersComponent implements OnInit {
+  organisationStatusList: [{id: 1, name: 'Management'}, {id: 2, name: 'Recruit'}, {id: 3, name: 'Member'}, {id: 4, name: 'Honorary member'}];
+  organisationStatusId: number;
   membersList: MemberModel[];
   myList: MemberModel[];
   memberToEdit: MemberModel;
@@ -42,6 +43,10 @@ export class MembersComponent implements OnInit {
         return direction === 'asc' ? res : -res;
       });
     }
+  }
+
+  changeOrganisationStatusID(ID: number) {
+    this.organisationStatusId = Number(ID);
   }
 
   onAddMemberButtonClick(content) {

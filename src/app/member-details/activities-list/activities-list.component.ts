@@ -12,8 +12,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ActivitiesListComponent implements OnInit {
   @Input() list: ActivitiesModel[];
   activityToEdit: ActivitiesModel;
-  image = '../../../../assets/kosz.jpg';
-  image1 = '../../../../assets/pobrane.jpg';
+  image = '../../../assets/kosz.jpg';
+  image1 = '../../../assets/pobrane.jpg';
   constructor(private service: MemberDetailsService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
