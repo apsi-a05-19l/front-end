@@ -20,22 +20,35 @@ export class ProjectDetailsComponent implements OnInit {
   reportToEdit: ReportModel;
   memberIdToAdd: number;
 
-  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private service: ProjectDetailsService,
+              private modalService: NgbModal,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.fetchProjectInfo();
     this.reportToEdit = new ReportModel();
     this.membersList = [];
+
+    this.fetchProjectInfo().then(() => this.resolveMembersData());
+  }
+
+  resolveMembersData() {
     this.service.fetchMembersLists().then((list: MemberModel[]) => {
-      list.forEach(member => this.membersList.push(new SelectMemberModel(member)));
+      this.membersList = this.mapMemberModels(list);
       this.leaderID = this.membersList.find((member) => this.project.currentLeader === member.fullName).id;
     });
   }
 
-  fetchProjectInfo() {
+  mapMemberModels(list: MemberModel[]): SelectMemberModel[] {
+    const listToReturn: SelectMemberModel[] = [];
+    list.forEach(member => listToReturn.push(new SelectMemberModel(member)));
+    return listToReturn;
+  }
+
+  fetchProjectInfo(): Promise<any> {
     this.projectId = Number(this.route.snapshot.params.id);
-    this.service.fetchProject(this.projectId)
+    return this.service.fetchProject(this.projectId)
       .then((project: ProjectDetailsModel) => {
         this.project = project;
         this.reportToEdit.author = project.currentLeader;
@@ -47,7 +60,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   addMemberToProject(content) {
-    this.service.addMemberToProject(this.memberIdToAdd, this.project).then((project) => console.log(project));
+    this.service.addMemberToProject(this.memberIdToAdd, this.project).then(() => this.fetchProjectInfo());
     content.close();
   }
 
@@ -60,25 +73,20 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   saveReport(content) {
-    this.service.saveReport(this.reportToEdit, this.projectId).then((report) => console.log(report));
+    this.service.saveReport(this.reportToEdit, this.projectId).then(() => this.fetchProjectInfo());
     content.close();
-    this.router.navigate(['projects']);
+  }
+
+  onReportDeleteEvent(reportId: number) {
+    this.service.deleteReport(reportId).then(() => this.fetchProjectInfo());
   }
 
   deleteProject() {
-    if (this.project.reports != null) {
-      for (const report of this.project.reports) {
-        this.service.deleteReport(report.id).then();
-      }
-    }
-    this.service.deleteProject(this.projectId).then();
-    this.router.navigate(['projects']);
+    this.service.deleteProject(this.projectId).then(() => this.router.navigate(['projects']));
   }
 
-
   updateProject(content) {
-    this.service.updateProject(this.project, this.leaderID).then((project) => console.log(project));
+    this.service.updateProject(this.project, this.leaderID).then(() => this.fetchProjectInfo());
     content.close();
-    this.router.navigate(['']);
   }
 }
