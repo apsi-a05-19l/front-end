@@ -103,9 +103,12 @@
     <h5 class="modal-title" id="modal-basic-title2">Do you really want to delete project?</h5>
   </div>
   <div class="modal-body">
-    <p>If you want you can change project status to archival</p>
+    <p>If you delete this project its data will disappear from the system</p>
+    <p>You can archive it instead</p>
+
   </div>
   <div class="modal-footer">
+    <div class="btn btn-primary mr-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary m1-auto" (click)="archiveProject(modal, content4)">Archive</div>
     <div class="btn btn-primary" (click)="deleteProject(modal)">Delete</div>
   </div>
