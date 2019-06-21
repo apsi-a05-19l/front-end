@@ -21,6 +21,10 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['members']);
   }
 
+  onWikiButtonClick() {
+    this.router.navigate(['wiki']);
+  }
+
   onLoginButtonClick() {
     this.router.navigate(['login']);
   }

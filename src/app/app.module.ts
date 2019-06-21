@@ -12,6 +12,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './AuthInterceptor';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { WikiComponent } from './wiki/wiki.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     SidebarComponent,
     WelcomePageComponent,
     LoginComponent,
+    WikiComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {
