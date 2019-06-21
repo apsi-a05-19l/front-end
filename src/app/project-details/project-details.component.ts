@@ -47,12 +47,8 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   addMemberToProject(content) {
-    this.service.addMemberToProject(this.memberIdToAdd).then((member) => console.log(member));
+    this.service.addMemberToProject(this.memberIdToAdd, this.project).then((project) => console.log(project));
     content.close();
-  }
-
-  changeMemberID(ID: number) {
-    this.memberIdToAdd = Number(ID);
   }
 
   addProjectReport(content) {
@@ -72,10 +68,10 @@ export class ProjectDetailsComponent implements OnInit {
   deleteProject() {
     if (this.project.reports != null) {
       for (const report of this.project.reports) {
-        this.service.deleteReport(report.id).subscribe();
+        this.service.deleteReport(report.id).then();
       }
     }
-    this.service.deleteProject(this.projectId).subscribe();
+    this.service.deleteProject(this.projectId).then();
     this.router.navigate(['projects']);
   }
 

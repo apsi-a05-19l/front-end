@@ -50,10 +50,10 @@ export class MemberDetailsComponent implements OnInit {
   deleteMember() {
     if (this.member.activities != null) {
       for (const activity of this.member.activities) {
-        this.service.deleteActivity(activity.id).subscribe();
+        this.service.deleteActivity(activity.id).then();
       }
     }
-    this.service.deleteMember(this.memberID).subscribe();
+    this.service.deleteMember(this.memberID).then();
     this.router.navigate(['members']);
   }
 
@@ -65,6 +65,17 @@ export class MemberDetailsComponent implements OnInit {
     this.memberToEdit.email = this.member.email;
     this.memberToEdit.roleID = this.member.roleID;
     this.service.updateMember(this.memberToEdit).then((member) => console.log(member));
+    content.close();
+  }
+
+  archiveMember(content) {
+    this.memberToEdit.id = this.member.id;
+    this.memberToEdit.name = this.member.name;
+    this.memberToEdit.surname = this.member.surname;
+    this.memberToEdit.phone_number = this.member.phone_number;
+    this.memberToEdit.email = this.member.email;
+    this.memberToEdit.roleID = this.member.roleID;
+    this.service.archiveMember(this.memberToEdit).then((member) => console.log(member));
     content.close();
   }
 
