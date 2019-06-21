@@ -11,9 +11,12 @@
         </div>
       </div>
     </div>
-    <div class="form-control">
-      <label class="custom-checkbox">
-        <input type="checkbox" name="ifArchived" [(ngModel)]="ifArchived">Display archived
+    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="ifArchived">
+      <label ngbButtonLabel class="btn-primary">
+        <input ngbButton type="radio" [value]="true"> Current + Archived
+      </label>
+      <label ngbButtonLabel class="btn-primary">
+        <input ngbButton type="radio" [value]="false"> Current
       </label>
     </div>
     <div *ngFor="let project of projectsList">
