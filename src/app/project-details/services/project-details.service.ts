@@ -5,6 +5,7 @@ import {serverAddress} from '../../../assets/server.constant';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {ProjectModel} from '../../projects/models/project.model';
+import {ProjectDetailsModel} from '../models/project-details.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,8 @@ export class ProjectDetailsService {
       'Something bad happened; please try again later.');
   };
 
-  addMemberToProject(memberId: number): Promise<any> {
-    return Promise.resolve(memberId);
+  addMemberToProject(memberId: number, project: ProjectDetailsModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects/addMember/' + project.id + '/' + memberId, project).toPromise();
   }
 
   fetchProject(projectId: number): Promise<any> {

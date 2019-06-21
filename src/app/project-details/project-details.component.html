@@ -79,9 +79,13 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <select class="custom-select" [value]="memberIdToAdd" (change)="changeMemberID($event.target.value)">
-          <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
-        </select>
+        <ng-select class="mt-3" [items]="membersList"
+                   bindValue="id"
+                   bindLabel="fullName"
+                   name="type"
+                   placeholder="Choose Member"
+                   [(ngModel)]="memberIdToAdd">
+        </ng-select>
       </div>
     </form>
   </div>

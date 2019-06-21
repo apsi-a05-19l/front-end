@@ -52,4 +52,8 @@ export class MemberDetailsService {
   updateMember(memberToSave: PostMemberModel): Promise<any> {
     return this.http.put(serverAddress + '/members', memberToSave).toPromise();
   }
+
+  archiveMember(memberToArchive: PostMemberModel): Promise<any> {
+    return this.http.put(serverAddress + '/members/' + memberToArchive.id, memberToArchive).toPromise();
+  }
 }
