@@ -20,26 +20,41 @@ export class ProjectDetailsComponent implements OnInit {
   reportToEdit: ReportModel;
   memberIdToAdd: number;
 
-  constructor(private route: ActivatedRoute, private service: ProjectDetailsService, private modalService: NgbModal, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private service: ProjectDetailsService,
+              private modalService: NgbModal,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.fetchProjectInfo();
     this.reportToEdit = new ReportModel();
-    this.membersList = [];
-    this.service.fetchMembersLists().then((list: MemberModel[]) => {
-      list.forEach(member => this.membersList.push(new SelectMemberModel(member)));
-      this.leaderID = this.membersList.find((member) => this.project.currentLeader === member.fullName).id;
-    });
+    this.projectId = Number(this.route.snapshot.params.id);
+    this.fetchProjectInfo().then(() => this.resolveMembersData());
   }
 
-  fetchProjectInfo() {
-    this.projectId = Number(this.route.snapshot.params.id);
-    this.service.fetchProject(this.projectId)
+  private fetchProjectInfo(): Promise<any> {
+    return this.service.fetchProject(this.projectId)
       .then((project: ProjectDetailsModel) => {
         this.project = project;
         this.reportToEdit.author = project.currentLeader;
       });
+  }
+
+  private mapMemberModels(list: MemberModel[]): SelectMemberModel[] {
+    const listToReturn = [];
+    list.forEach(member => listToReturn.push(new SelectMemberModel(member)));
+    return listToReturn;
+  }
+
+  private resolveMembersData() {
+    this.service.fetchMembersLists().then((list: MemberModel[]) => {
+      this.membersList = this.mapMemberModels(list);
+      this.leaderID = this.membersList.find((member) => this.project.currentLeader === member.fullName).id;
+    });
+  }
+
+  onReportDeleteEvent(reportId: number) {
+    this.service.deleteReport(reportId).then(() => this.fetchProjectInfo());
   }
 
   onAddMemberToProject(content) {
@@ -47,7 +62,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   addMemberToProject(content) {
-    this.service.addMemberToProject(this.memberIdToAdd).then((member) => console.log(member));
+    this.service.addMemberToProject(this.memberIdToAdd).then(() => this.fetchProjectInfo());
     content.close();
   }
 
@@ -64,25 +79,17 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   saveReport(content) {
-    this.service.saveReport(this.reportToEdit, this.projectId).then((report) => console.log(report));
+    this.service.saveReport(this.reportToEdit, this.projectId).then(() => this.fetchProjectInfo());
     content.close();
-    this.router.navigate(['projects']);
   }
 
   deleteProject() {
-    if (this.project.reports != null) {
-      for (const report of this.project.reports) {
-        this.service.deleteReport(report.id).subscribe();
-      }
-    }
-    this.service.deleteProject(this.projectId).subscribe();
-    this.router.navigate(['projects']);
+    this.service.deleteProject(this.projectId).then(() => this.router.navigate(['/projects']));
   }
 
 
   updateProject(content) {
-    this.service.updateProject(this.project, this.leaderID).then((project) => console.log(project));
+    this.service.updateProject(this.project, this.leaderID).then(() => this.fetchProjectInfo());
     content.close();
-    this.router.navigate(['']);
   }
 }

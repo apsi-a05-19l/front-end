@@ -22,11 +22,15 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.membersList = new Array<SelectMemberModel>();
-    this.service.fetchProjectsList().then((list: ProjectModel[]) => this.projectsList = list);
+    this.resolveProjectsData();
     this.service.fetchMembersLists().then((list: MemberModel[]) => list.forEach(member =>
       this.membersList.push(new SelectMemberModel(member)))
     );
     this.projectToEdit = new PostProjectModel();
+  }
+
+  resolveProjectsData() {
+    this.service.fetchProjectsList().then((list: ProjectModel[]) => this.projectsList = list);
   }
 
   onAddProjectButtonClick(content) {
@@ -34,8 +38,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   saveProject(content) {
-    this.service.saveProject(this.projectToEdit).then((project) => console.log(project));
+    this.service.saveProject(this.projectToEdit).then(() => this.resolveProjectsData());
     content.close();
-    this.router.navigate(['']);
   }
 }

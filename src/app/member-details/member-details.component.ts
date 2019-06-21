@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MemberDetailsService} from './services/members-details.service';
 import {MemberDetailsModel} from './models/member-details.model';
@@ -18,7 +18,11 @@ export class MemberDetailsComponent implements OnInit {
   memberID: number;
   activitiesToEdit: ActivitiesModel;
   memberToEdit: PostMemberModel;
-  constructor(private route: ActivatedRoute, private service: MemberDetailsService, private modalService: NgbModal, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+              private service: MemberDetailsService,
+              private modalService: NgbModal,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.activitiesToEdit = new ActivitiesModel();
@@ -42,19 +46,16 @@ export class MemberDetailsComponent implements OnInit {
 
   saveActivity(content) {
     this.activitiesToEdit.id = null;
-    this.service.saveActivity(this.activitiesToEdit, this.memberID).then();
+    this.service.saveActivity(this.activitiesToEdit, this.memberID).then(() => this.fetchMemberInfo());
     content.close();
-    this.fetchMemberInfo();
+  }
+
+  onDeleteActivityEvent(activityId: number) {
+    this.service.deleteActivity(activityId).then(() => this.fetchMemberInfo());
   }
 
   deleteMember() {
-    if (this.member.activities != null) {
-      for (const activity of this.member.activities) {
-        this.service.deleteActivity(activity.id).subscribe();
-      }
-    }
-    this.service.deleteMember(this.memberID).subscribe();
-    this.router.navigate(['members']);
+    this.service.deleteMember(this.memberID).then(() => this.router.navigate(['members']));
   }
 
   updateMember(content) {

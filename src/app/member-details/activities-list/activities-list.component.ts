@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivitiesModel} from '../models/activities.model';
 import {MemberDetailsService} from '../services/members-details.service';
 import {Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ActivitiesListComponent implements OnInit {
   @Input() list: ActivitiesModel[];
+  @Output() deleteEvent = new EventEmitter<number>();
   activityToEdit: ActivitiesModel;
   image = '../../../assets/kosz.jpg';
   image1 = '../../../assets/pobrane.jpg';
@@ -20,8 +21,7 @@ export class ActivitiesListComponent implements OnInit {
   }
 
   clickOnBin(activityID: number) {
-    this.service.deleteActivity(activityID).subscribe();
-    this.router.navigate(['members']);
+    this.deleteEvent.emit(activityID);
   }
 
   clickOnEdit(activity: ActivitiesModel, content) {
