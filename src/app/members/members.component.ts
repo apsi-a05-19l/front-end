@@ -24,9 +24,13 @@ export class MembersComponent implements OnInit {
   constructor(private service: MembersService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
+    this.fetchMembersData();
     this.service.fetchOrganisationStatuses().then((statuses: OrganisationStatusModel[]) => this.organisationStatusList = statuses);
     this.memberToEdit = new PostMemberModel();
+  }
+
+  fetchMembersData() {
+    this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
   }
 
   onSort({column, direction}: SortEvent) {
@@ -48,16 +52,12 @@ export class MembersComponent implements OnInit {
     }
   }
 
-  changeOrganisationStatusID(ID: number) {
-    this.organisationStatusId = Number(ID);
-  }
-
   onAddMemberButtonClick(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
   saveMember(content) {
-    this.service.saveMember(this.memberToEdit).then((member) => console.log(member));
+    this.service.saveMember(this.memberToEdit).then(() => this.fetchMembersData());
     content.close();
   }
 }
