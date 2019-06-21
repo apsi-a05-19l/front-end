@@ -4,7 +4,7 @@ import { MembersService } from './services/members.service';
 import {NgbdSortableHeader, SortEvent} from './sortable.directive';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {OrganisationStatusModel} from '../member-details/models/organisation-status.model';
-import {PostMemberModel} from './mock-data/post-member.model';
+import {PostMemberModel} from './models/post-member.model';
 
 export const compare = (v1, v2) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 

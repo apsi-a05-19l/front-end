@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {PostMemberModel} from '../../members/mock-data/post-member.model';
+import {PostMemberModel} from '../../members/models/post-member.model';
 
 @Injectable({
   providedIn: 'root'

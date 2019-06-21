@@ -5,7 +5,7 @@ import {MemberDetailsModel} from './models/member-details.model';
 import {ActivitiesModel} from './models/activities.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {OrganisationStatusModel} from './models/organisation-status.model';
-import {PostMemberModel} from '../members/mock-data/post-member.model';
+import {PostMemberModel} from '../members/models/post-member.model';
 
 @Component({
   selector: 'app-member-details',
