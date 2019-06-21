@@ -16,6 +16,7 @@ export class ProjectsComponent implements OnInit {
   projectsList: ProjectModel[];
   membersList: SelectMemberModel[];
   projectToEdit: PostProjectModel;
+  ifArchived: boolean;
 
   constructor(private service: ProjectsService, private modalService: NgbModal, private router: Router) {
   }
@@ -27,6 +28,7 @@ export class ProjectsComponent implements OnInit {
       this.membersList.push(new SelectMemberModel(member)))
     );
     this.projectToEdit = new PostProjectModel();
+    this.ifArchived = false;
   }
 
   resolveProjectsData() {

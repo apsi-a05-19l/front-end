@@ -61,7 +61,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   onAddMemberToProject(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title2'});
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title3'});
   }
 
   addMemberToProject(content) {
@@ -99,13 +99,23 @@ export class ProjectDetailsComponent implements OnInit {
     content.close();
   }
 
-  archiveProject(content) {
+  archiveProject(content, content1) {
     this.projectModel.id = this.project.id;
     this.projectModel.name = this.project.name;
     this.projectModel.isArchived = true;
     console.log(this.projectModel);
     this.service.archiveProject(this.projectModel).then(() => this.fetchProjectInfo());
     content.close();
+    this.modalService.open(content1, {ariaLabelledBy: 'modal-basic-title4'});
+  }
+
+  archiveProject1(content) {
+    this.projectModel.id = this.project.id;
+    this.projectModel.name = this.project.name;
+    this.projectModel.isArchived = true;
+    console.log(this.projectModel);
+    this.service.archiveProject(this.projectModel).then(() => this.fetchProjectInfo());
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title4'});
   }
 
   updateProject(content) {

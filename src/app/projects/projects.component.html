@@ -11,8 +11,13 @@
         </div>
       </div>
     </div>
+    <div class="form-control">
+      <label class="custom-checkbox">
+        <input type="checkbox" name="ifArchived" [(ngModel)]="ifArchived">Display archived
+      </label>
+    </div>
     <div *ngFor="let project of projectsList">
-      <app-project-item [project]="project"></app-project-item>
+      <app-project-item *ngIf="ifArchived || (project.isArchived === false)" [project]="project"></app-project-item>
     </div>
   </div>
 </div>

@@ -16,6 +16,9 @@
       <div class="btn btn-light m-auto" style="text-align:center" (click)="editProject(content1)"><h5>Edit project</h5></div>
     </div>
     <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="archiveProject1(content4)"><h5>Archive project</h5></div>
+    </div>
+    <div class="d-flex m-4">
       <div class="btn btn-light m-auto" style="text-align:center" (click)="onDeleteProject(content3)"><h5>Delete project</h5></div>
     </div>
   </div>
@@ -103,7 +106,16 @@
     <p>If you want you can change project status to archival</p>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-primary m1-auto" (click)="archiveProject(modal)">Archive</div>
+    <div class="btn btn-primary m1-auto" (click)="archiveProject(modal, content4)">Archive</div>
     <div class="btn btn-primary" (click)="deleteProject(modal)">Delete</div>
+  </div>
+</ng-template>
+
+<ng-template #content4 let-modal>
+  <div class="modal-header bg-success">
+    <h5 class="modal-title" id="modal-basic-title4">Project has been archived</h5>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Close</div>
   </div>
 </ng-template>
