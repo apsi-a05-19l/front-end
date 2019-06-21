@@ -3,6 +3,8 @@ import { MemberModel } from './models/member.model';
 import { MembersService } from './services/members.service';
 import {NgbdSortableHeader, SortEvent} from './sortable.directive';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {OrganisationStatusModel} from '../member-details/models/organisation-status.model';
+import {PostMemberModel} from './mock-data/post-member.model';
 
 export const compare = (v1, v2) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
@@ -13,17 +15,18 @@ export const compare = (v1, v2) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 })
 
 export class MembersComponent implements OnInit {
-  organisationStatusList: [{id: 1, name: 'Management'}, {id: 2, name: 'Recruit'}, {id: 3, name: 'Member'}, {id: 4, name: 'Honorary member'}];
+  organisationStatusList: OrganisationStatusModel[];
   organisationStatusId: number;
   membersList: MemberModel[];
   myList: MemberModel[];
-  memberToEdit: MemberModel;
+  memberToEdit: PostMemberModel;
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   constructor(private service: MembersService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
-    this.memberToEdit = new MemberModel();
+    this.service.fetchOrganisationStatuses().then((statuses: OrganisationStatusModel[]) => this.organisationStatusList = statuses);
+    this.memberToEdit = new PostMemberModel();
   }
 
   onSort({column, direction}: SortEvent) {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {ActivitiesModel} from '../models/activities.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
-import {MemberModel} from '../../members/models/member.model';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {PostMemberModel} from '../../members/mock-data/post-member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,10 @@ export class MemberDetailsService {
     return this.http.get(serverAddress + '/members/' + memberId).toPromise();
   }
 
+  fetchOrganisationStatuses(): Promise<any> {
+    return this.http.get(serverAddress + '/role').toPromise();
+  }
+
   saveActivity(activityToSave: ActivitiesModel, memberID: number): Promise<any> {
     return this.http.post(serverAddress + '/activity/' + memberID, activityToSave).toPromise();
   }
@@ -45,7 +49,7 @@ export class MemberDetailsService {
     return Promise.resolve(activityToUpdate);
   }
 
-  updateMember(memberToSave: MemberModel): Promise<MemberModel> {
-    return Promise.resolve(memberToSave);
+  updateMember(memberToSave: PostMemberModel): Promise<any> {
+    return this.http.put(serverAddress + '/members', memberToSave).toPromise();
   }
 }

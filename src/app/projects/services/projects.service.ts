@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {Router} from '@angular/router';
-import {ProjectModel} from '../models/project.model';
+import {PostProjectModel} from '../models/PostProjectModel';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class ProjectsService {
     return this.http.get(serverAddress + '/members').toPromise();
   }
 
-  saveProject(projectToSave: ProjectModel): Promise<any> {
+  saveProject(projectToSave: PostProjectModel): Promise<any> {
     return this.http.post(serverAddress + '/projects', projectToSave).toPromise();
   }
 }

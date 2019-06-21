@@ -5,6 +5,7 @@ import { MembersItemComponent } from './members-item/members-item.component';
 import {NgbdSortableHeader} from './sortable.directive';
 import {MemberDetailsModule} from '../member-details/member-details.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     MemberDetailsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ]
 })
 export class MembersModule { }

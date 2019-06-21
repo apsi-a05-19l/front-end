@@ -5,6 +5,9 @@ export class MemberDetailsModel {
   id: number;
   name: string;
   surname: string;
+  phone_number: string;
+  email: string;
+  roleID: number;
   organisationStatus: string;
   points: number;
   activities: ActivitiesModel[];
