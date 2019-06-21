@@ -9,12 +9,14 @@
         <th scope="col">#</th>
         <th scope="col">Name of project</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let project of list; index as i">
         <th scope="row" style="width: 7%">{{ i + 1 }}</th>
         <td style="width: 65%">{{ project.name }}</td>
+        <td ><span *ngIf="project.isArchived" class="badge badge-secondary mt-2 mr-3" style="height: 30%">Archived</span></td>
         <app-project-button [project]="project"></app-project-button>
       </tr>
       </tbody>
