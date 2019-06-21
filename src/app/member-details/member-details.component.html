@@ -13,7 +13,7 @@
     <div class="d-flex mb-5">
       <h3 *ngIf="member" class="card-title mx-auto mt-3">E-mail: {{member.email}}</h3>
     </div>
-    <app-activities-list [list]="member.activities" *ngIf="member && member.activities"></app-activities-list>
+    <app-activities-list [list]="member.activities" *ngIf="member && member.activities" (deleteEvent)="onDeleteActivityEvent($event)"></app-activities-list>
     <div class="d-flex m-4">
     <div class="btn btn-light m-auto" style="text-align:center" (click)="addMemberActivity(content)"><h5>Add Activities</h5></div>
     </div>

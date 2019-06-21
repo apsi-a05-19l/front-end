@@ -47,12 +47,16 @@ export class ProjectDetailsService {
     return this.http.post(serverAddress + '/report/' + projectId, reportToSave).toPromise();
   }
 
-  deleteReport(reportID: number) {
-    return this.http.delete<void>(serverAddress + '/report/' + reportID).pipe(catchError(this.handleError));
+  deleteReport(reportID: number): Promise<any> {
+    return this.http.delete(serverAddress + '/report/' + reportID)
+      .toPromise()
+      .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
-  deleteProject(projectID: number) {
-    return this.http.delete<void>(serverAddress + '/projects/' + projectID).pipe(catchError(this.handleError));
+  deleteProject(projectID: number): Promise<any> {
+    return this.http.delete(serverAddress + '/projects/' + projectID)
+      .toPromise()
+      .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
   updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {

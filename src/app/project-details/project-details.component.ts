@@ -47,9 +47,12 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   addMemberToProject(content) {
-    this.service.addMemberToProject(this.memberIdToAdd, this.project).then((project) => console.log(project));
+    this.service.addMemberToProject(this.memberIdToAdd).then((member) => console.log(member));
     content.close();
-    this.fetchProjectInfo();
+  }
+
+  changeMemberID(ID: number) {
+    this.memberIdToAdd = Number(ID);
   }
 
   addProjectReport(content) {
