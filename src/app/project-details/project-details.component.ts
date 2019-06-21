@@ -6,6 +6,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ReportModel} from './models/report.model';
 import {MemberModel} from '../members/models/member.model';
 import {SelectMemberModel} from '../projects/models/SelectMemberModel';
+import {PostProjectModel} from '../projects/models/PostProjectModel';
+import {ProjectModel} from '../projects/models/project.model';
 
 @Component({
   selector: 'app-project-details',
@@ -18,7 +20,9 @@ export class ProjectDetailsComponent implements OnInit {
   membersList: SelectMemberModel[];
   leaderID: number;
   reportToEdit: ReportModel;
+  projectToEdit: PostProjectModel;
   memberIdToAdd: number;
+  projectModel: ProjectModel;
 
   constructor(private route: ActivatedRoute,
               private service: ProjectDetailsService,
@@ -29,7 +33,8 @@ export class ProjectDetailsComponent implements OnInit {
   ngOnInit() {
     this.reportToEdit = new ReportModel();
     this.membersList = [];
-
+    this.projectToEdit = new PostProjectModel();
+    this.projectModel = new ProjectModel();
     this.fetchProjectInfo().then(() => this.resolveMembersData());
   }
 
@@ -81,12 +86,33 @@ export class ProjectDetailsComponent implements OnInit {
     this.service.deleteReport(reportId).then(() => this.fetchProjectInfo());
   }
 
-  deleteProject() {
+  onMemberDeleteEvent(memberId: number) {
+    this.service.removeMember(this.project, memberId).then(() => this.fetchProjectInfo());
+  }
+
+  onDeleteProject(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title2'});
+  }
+
+  deleteProject(content) {
     this.service.deleteProject(this.projectId).then(() => this.router.navigate(['projects']));
+    content.close();
+  }
+
+  archiveProject(content) {
+    this.projectModel.id = this.project.id;
+    this.projectModel.name = this.project.name;
+    this.projectModel.isArchived = true;
+    console.log(this.projectModel);
+    this.service.archiveProject(this.projectModel).then(() => this.fetchProjectInfo());
+    content.close();
   }
 
   updateProject(content) {
-    this.service.updateProject(this.project, this.leaderID).then(() => this.fetchProjectInfo());
+    this.projectToEdit.id = this.project.id;
+    this.projectToEdit.name = this.project.name;
+    this.projectToEdit.leaderId = this.leaderID;
+    this.service.updateProject(this.projectToEdit).then(() => this.fetchProjectInfo());
     content.close();
   }
 }

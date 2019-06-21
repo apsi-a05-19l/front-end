@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {ReportModel} from '../models/report.model';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
-import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
-import {ProjectModel} from '../../projects/models/project.model';
 import {ProjectDetailsModel} from '../models/project-details.model';
+import {PostProjectModel} from '../../projects/models/PostProjectModel';
+import {ProjectModel} from '../../projects/models/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -53,17 +53,25 @@ export class ProjectDetailsService {
       .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
+  removeMember(project: ProjectDetailsModel, memberID: number): Promise<any> {
+    return this.http.put(serverAddress + '/projects/removeMember/' + project.id + '/' + memberID, project).toPromise();
+  }
+
   deleteProject(projectID: number): Promise<any> {
     return this.http.delete(serverAddress + '/projects/' + projectID)
       .toPromise()
       .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
-  updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {
-    return Promise.resolve(reportToUpdate);
+  updateReport(reportToUpdate: ReportModel): Promise<any> {
+    return this.http.put(serverAddress + '/report', reportToUpdate).toPromise();
   }
 
-  updateProject(projectToSave: ProjectModel, leaderID: number): Promise<any> {
-    return Promise.resolve(projectToSave);
+  updateProject(projectToSave: PostProjectModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects', projectToSave).toPromise();
+  }
+
+  archiveProject(projectToArchive: ProjectModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects/archive/' + projectToArchive.id, projectToArchive).toPromise();
   }
 }

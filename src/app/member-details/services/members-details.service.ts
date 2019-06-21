@@ -50,8 +50,8 @@ export class MemberDetailsService {
       .catch((error: HttpErrorResponse) => this.handleError(error));
   }
 
-  updateActivity(activityToUpdate: ActivitiesModel): Promise<ActivitiesModel> {
-    return Promise.resolve(activityToUpdate);
+  updateActivity(activityToUpdate: ActivitiesModel): Promise<any> {
+    return this.http.put(serverAddress + '/activity', activityToUpdate).toPromise();
   }
 
   updateMember(memberToSave: PostMemberModel): Promise<any> {

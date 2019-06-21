@@ -30,7 +30,7 @@ export class ActivitiesListComponent implements OnInit {
   }
 
   updateActivity(content) {
-    this.service.updateActivity(this.activityToEdit).then((activity) => console.log(activity));
+    this.service.updateActivity(this.activityToEdit).then();
     content.close();
   }
 

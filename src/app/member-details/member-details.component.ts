@@ -51,8 +51,13 @@ export class MemberDetailsComponent implements OnInit {
     content.close();
   }
 
-  deleteMember() {
+  onDeleteMember(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title2'});
+  }
+
+  deleteMember(content) {
     this.service.deleteMember(this.memberID).then(() => this.router.navigate(['members']));
+    content.close();
   }
 
   onDeleteActivityEvent(activityId: number) {
@@ -66,7 +71,7 @@ export class MemberDetailsComponent implements OnInit {
     this.memberToEdit.phone_number = this.member.phone_number;
     this.memberToEdit.email = this.member.email;
     this.memberToEdit.roleID = this.member.roleID;
-    this.service.updateMember(this.memberToEdit).then((member) => console.log(member));
+    this.service.updateMember(this.memberToEdit).then(() => this.fetchMemberInfo());
     content.close();
   }
 
@@ -77,8 +82,7 @@ export class MemberDetailsComponent implements OnInit {
     this.memberToEdit.phone_number = this.member.phone_number;
     this.memberToEdit.email = this.member.email;
     this.memberToEdit.roleID = this.member.roleID;
-    this.service.archiveMember(this.memberToEdit).then((member) => console.log(member));
+    this.service.archiveMember(this.memberToEdit).then(() => this.fetchMemberInfo());
     content.close();
   }
-
 }

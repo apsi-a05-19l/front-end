@@ -30,7 +30,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   updateReport(content) {
-    this.service.updateReport(this.reportToEdit).then((report) => console.log(report));
+    this.service.updateReport(this.reportToEdit).then();
     content.close();
   }
 }

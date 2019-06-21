@@ -8,7 +8,7 @@
       <div class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
     </div>
     <app-reports-list [list]="project.reports" *ngIf="project && project.reports" (deleteEvent)="onReportDeleteEvent($event)"></app-reports-list>
-    <app-members-list [list]="project.members" *ngIf="project && project.reports"></app-members-list>
+    <app-members-list [list]="project.members" *ngIf="project && project.reports" (deleteEvent)="onMemberDeleteEvent($event)"></app-members-list>
     <div class="d-flex m-4">
       <div class="btn btn-light m-auto" style="text-align:center" (click)="onAddMemberToProject(content2)"><h5>Add member to project</h5></div>
     </div>
@@ -16,7 +16,7 @@
       <div class="btn btn-light m-auto" style="text-align:center" (click)="editProject(content1)"><h5>Edit project</h5></div>
     </div>
     <div class="d-flex m-4">
-      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteProject()"><h5>Delete project</h5></div>
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="onDeleteProject(content3)"><h5>Delete project</h5></div>
     </div>
   </div>
 </div>
@@ -92,5 +92,18 @@
   <div class="modal-footer">
     <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="addMemberToProject(modal)">Add</div>
+  </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title2">Do you really want to delete project?</h5>
+  </div>
+  <div class="modal-body">
+    <p>If you want you can change project status to archival</p>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary m1-auto" (click)="archiveProject(modal)">Archive</div>
+    <div class="btn btn-primary" (click)="deleteProject(modal)">Delete</div>
   </div>
 </ng-template>
