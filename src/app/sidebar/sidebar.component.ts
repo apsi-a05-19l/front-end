@@ -14,6 +14,10 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {}
 
+  onWikiButtonClick() {
+    this.router.navigate(['wiki']);
+  }
+
   onLoginButtonClick() {
     this.router.navigate(['login']);
   }

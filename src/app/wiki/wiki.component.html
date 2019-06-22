@@ -1,0 +1,45 @@
+<div class="d-flex">
+  <div class="card mx-auto" style="width: 95%;">
+    <div class="card-header">
+      <div id="gridContainer">
+        <div class="row">
+          <div class="col-10"> <h4 class="card-title mr-auto ml-4">Available Wikis</h4> </div>
+          <div class="col-2"> <div class="btn btn-primary m-auto" style="text-align:center" (click)="onAddWikiButtonClick(content)"><h5>Add wiki</h5></div> </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let wiki of wikiList">
+      <app-wiki-item [wiki]="wiki"></app-wiki-item>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title m-auto" id="modal-basic-title" style="text-align: center">Add wiki</h5>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Wiki name</span>
+          </div>
+          <input type="text" [(ngModel)]="wikiToEdit.title" name="name" class="form-control">
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Wiki Author</span>
+          </div>
+          <select class="custom-select ml-5" [value]="AuthorID" (change)="changeAuthorID($event.target.value)">
+            <option *ngFor="let member of AuthorList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-primary" (click)="saveWiki(modal)">Save</div>
+  </div>
+</ng-template>

@@ -13,6 +13,8 @@ import {AuthInterceptor} from './AuthInterceptor';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { WikiComponent } from './wiki/wiki.component';
+import {WikiModule} from './wiki/wiki.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    WikiModule,
     NgSelectModule
   ],
   providers: [
