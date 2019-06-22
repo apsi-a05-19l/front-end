@@ -22,7 +22,6 @@ import {WikiModule} from './wiki/wiki.module';
     SidebarComponent,
     WelcomePageComponent,
     LoginComponent,
-    WikiComponent,
   ],
   imports: [
     BrowserModule,
