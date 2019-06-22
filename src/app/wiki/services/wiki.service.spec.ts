@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProjectsService } from './projects.service';
+import { WikiService } from './wiki.service';
 
 describe('WikiService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ProjectsService = TestBed.get(ProjectsService);
+    const service: WikiService = TestBed.get(WikiService);
     expect(service).toBeTruthy();
   });
 });

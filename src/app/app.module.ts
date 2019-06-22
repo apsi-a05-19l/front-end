@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { WikiComponent } from './wiki/wiki.component';
+import {WikiModule} from './wiki/wiki.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { WikiComponent } from './wiki/wiki.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    WikiModule,
   ],
   providers: [
     {
