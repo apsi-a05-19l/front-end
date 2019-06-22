@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {ReportModel} from '../models/report.model';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
-import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {ProjectDetailsModel} from '../models/project-details.model';
+import {PostProjectModel} from '../../projects/models/PostProjectModel';
 import {ProjectModel} from '../../projects/models/project.model';
 
 @Injectable({
@@ -30,6 +31,10 @@ export class ProjectDetailsService {
       'Something bad happened; please try again later.');
   };
 
+  addMemberToProject(memberId: number, project: ProjectDetailsModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects/addMember/' + project.id + '/' + memberId, project).toPromise();
+  }
+
   fetchProject(projectId: number): Promise<any> {
     return this.http.get(serverAddress + '/projects/' + projectId).toPromise();
   }
@@ -42,19 +47,31 @@ export class ProjectDetailsService {
     return this.http.post(serverAddress + '/report/' + projectId, reportToSave).toPromise();
   }
 
-  deleteReport(reportID: number) {
-    return this.http.delete<void>(serverAddress + '/report/' + reportID).pipe(catchError(this.handleError));
+  deleteReport(reportID: number): Promise<any> {
+    return this.http.delete(serverAddress + '/report/' + reportID)
+      .toPromise()
+      .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
-  deleteProject(projectID: number) {
-    return this.http.delete<void>(serverAddress + '/projects/' + projectID).pipe(catchError(this.handleError));
+  removeMember(project: ProjectDetailsModel, memberID: number): Promise<any> {
+    return this.http.put(serverAddress + '/projects/removeMember/' + project.id + '/' + memberID, project).toPromise();
   }
 
-  updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {
-    return Promise.resolve(reportToUpdate);
+  deleteProject(projectID: number): Promise<any> {
+    return this.http.delete(serverAddress + '/projects/' + projectID)
+      .toPromise()
+      .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
-  updateProject(projectToSave: ProjectModel, leaderID: number): Promise<any> {
-    return Promise.resolve(projectToSave);
+  updateReport(reportToUpdate: ReportModel): Promise<any> {
+    return this.http.put(serverAddress + '/report', reportToUpdate).toPromise();
+  }
+
+  updateProject(projectToSave: PostProjectModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects', projectToSave).toPromise();
+  }
+
+  archiveProject(projectToArchive: ProjectModel): Promise<any> {
+    return this.http.put(serverAddress + '/projects/archive/' + projectToArchive.id, projectToArchive).toPromise();
   }
 }

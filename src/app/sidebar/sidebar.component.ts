@@ -7,19 +7,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  image = '../../assets/logo_inf.jpg';
+  clubTitle = 'APSI Club';
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
-
-  onProjectsButtonClick() {
-    this.router.navigate(['projects']);
-  }
-
-  onMembersButtonClick() {
-    this.router.navigate(['members']);
-  }
+  ngOnInit() {}
 
   onWikiButtonClick() {
     this.router.navigate(['wiki']);

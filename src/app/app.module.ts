@@ -33,6 +33,7 @@ import {WikiModule} from './wiki/wiki.module';
     FormsModule,
     ReactiveFormsModule,
     WikiModule,
+    NgSelectModule
   ],
   providers: [
     {

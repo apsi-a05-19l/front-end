@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectModel} from './models/project.model';
 import {ProjectsService} from './services/projects.service';
-import {ProjectDetailsModel} from '../project-details/models/project-details.model';
 import {MemberModel} from '../members/models/member.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import {SelectMemberModel} from './models/SelectMemberModel';
+import {PostProjectModel} from './models/PostProjectModel';
 
 @Component({
   selector: 'app-projects',
@@ -13,28 +14,33 @@ import {Router} from '@angular/router';
 })
 export class ProjectsComponent implements OnInit {
   projectsList: ProjectModel[];
-  membersList: MemberModel[];
-  projectToEdit: ProjectModel;
-  leaderID: number;
-  constructor(private service: ProjectsService, private modalService: NgbModal, private router: Router) { }
+  membersList: SelectMemberModel[];
+  projectToEdit: PostProjectModel;
+  ifArchived: boolean;
+
+  constructor(private service: ProjectsService, private modalService: NgbModal, private router: Router) {
+  }
 
   ngOnInit() {
+    this.membersList = new Array<SelectMemberModel>();
+    this.resolveProjectsData();
+    this.service.fetchMembersLists().then((list: MemberModel[]) => list.forEach(member =>
+      this.membersList.push(new SelectMemberModel(member)))
+    );
+    this.projectToEdit = new PostProjectModel();
+    this.ifArchived = false;
+  }
+
+  resolveProjectsData() {
     this.service.fetchProjectsList().then((list: ProjectModel[]) => this.projectsList = list);
-    this.service.fetchMembersLists().then((list: MemberModel[]) => this.membersList = list);
-    this.projectToEdit = new ProjectModel();
   }
 
   onAddProjectButtonClick(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  changeLeaderID(ID: number) {
-    this.leaderID = Number(ID);
-  }
-
   saveProject(content) {
-    this.service.saveProject(this.projectToEdit, this.leaderID).then((project) => console.log(project));
+    this.service.saveProject(this.projectToEdit).then(() => this.resolveProjectsData());
     content.close();
-    this.router.navigate(['']);
   }
 }

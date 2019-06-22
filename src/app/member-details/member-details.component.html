@@ -3,11 +3,17 @@
     <h1 *ngIf="member" class="card-title mx-auto mt-3">{{member.name}} {{member.surname}}</h1>
   </div>
   <div class="card-body">
-    <div class="d-flex mb-5">
+    <div class="d-flex mb-2">
       <h2 *ngIf="member" class="card-title mx-auto mt-3">{{member.organisationStatus}}</h2>
-      <h3 *ngIf="member" class="card-title mx-auto mt-3">Liczba punktów: {{member.points}}</h3>
+      <h3 *ngIf="member" class="card-title mx-auto mt-3">Points Number: {{member.points}}</h3>
     </div>
-    <app-activities-list [list]="member.activities" *ngIf="member && member.activities"></app-activities-list>
+    <div class="d-flex mb-1">
+      <h3 *ngIf="member" class="card-title mx-auto mt-3">Phone number: {{member.phone_number}}</h3>
+    </div>
+    <div class="d-flex mb-5">
+      <h3 *ngIf="member" class="card-title mx-auto mt-3">E-mail: {{member.email}}</h3>
+    </div>
+    <app-activities-list [list]="member.activities" *ngIf="member && member.activities" (deleteEvent)="onDeleteActivityEvent($event)"></app-activities-list>
     <div class="d-flex m-4">
     <div class="btn btn-light m-auto" style="text-align:center" (click)="addMemberActivity(content)"><h5>Add Activities</h5></div>
     </div>
@@ -16,7 +22,7 @@
       <div class="btn btn-light m-auto" style="text-align:center" (click)="editMember(content1)"><h5>Edit member</h5></div>
     </div>
     <div class="d-flex m-4">
-      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteMember()"><h5>Delete member</h5></div>
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="onDeleteMember(content2)"><h5>Delete member</h5></div>
     </div>
   </div>
 </div>
@@ -39,13 +45,11 @@
             <span class="input-group-text">Points</span>
           </div>
           <input type="number" [(ngModel)]="activitiesToEdit.points" name="activityName" min = 1 max = 50>
-<!--          <ng-number-picker [(ngModel)]="activitiesToEdit.activityPoints" name="number" class="form-control"></ng-number-picker> -->
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-<!--    <div class="btn btn-secondary m1-auto" (click)="deleteMember(modal)">Cancel</div>-->
     <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="saveActivity(modal)">Save</div>
   </div>
@@ -53,37 +57,63 @@
 
 <ng-template #content1 let-modal>
   <div class="modal-header">
-    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Add member</h5>
+    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Edit member</h5>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member name</span>
+            <span class="input-group-text" style="width: 3.5cm">First name</span>
           </div>
           <input type="text" [(ngModel)]="member.name" name="firstname" class="form-control">
         </div>
-        <div class="input-group mt-2">
+        <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member surname</span>
+            <span class="input-group-text" style="width: 3.5cm">Surname</span>
           </div>
           <input type="text" [(ngModel)]="member.surname" name="surname" class="form-control">
         </div>
-        <div class="input-group mt-2">
+        <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Member organisation status</span>
+            <span class="input-group-text" style="width: 3.5cm">Phone number</span>
           </div>
-          <input type="text" [(ngModel)]="member.organisationStatus" name="organisationStatus" class="form-control">
-          <!--           <select class="custom-select ml-5" [value]="memberToEdit.organisationStatus" (change)="changeLeaderID($event.target.value)">-->
-          <!--              <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>-->
-          <!--           </select>-->
+          <input type="text" [(ngModel)]="member.phone_number" name="phone_number" class="form-control">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="width: 3.5cm">E-mail</span>
+          </div>
+          <input type="text" [(ngModel)]="member.email" name="email" class="form-control">
+        </div>
+        <div class="input-group mt-2">
+          <ng-select class="mt-3" [items]="organisationStatusList"
+                     bindValue="id"
+                     bindLabel="organisationStatus"
+                     name="type"
+                     placeholder="Choose Organisation Status"
+                     style="width: 100%;"
+                     [(ngModel)]="member.roleID">
+          </ng-select>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="updateMember(modal)">Save</div>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title2">Do you really want to delete member?</h5>
+  </div>
+  <div class="modal-body">
+    <p>If you want you can change member organisation status to archival</p>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary m1-auto" (click)="archiveMember(modal)">Archive</div>
+    <div class="btn btn-primary" (click)="deleteMember(modal)">Delete</div>
   </div>
 </ng-template>

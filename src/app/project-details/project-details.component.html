@@ -1,19 +1,26 @@
-<div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.5%">
+<div [className]="project && project.isArchived ? 'card text-white bg-secondary' : 'card text-white bg-primary'" style="margin-left: 2.5%; margin-right: 2.5%">
   <div class="card-header d-flex">
     <h1 *ngIf="project" class="card-title mx-auto mt-3">{{project.name}}</h1>
   </div>
   <div class="card-body">
     <div class="d-flex mb-5">
-      <h2 *ngIf="project" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
-      <div class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
+      <h2 *ngIf="project && !project.isArchived" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
+      <h2 *ngIf="project && project.isArchived" class="mx-auto mt-3">Last project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>
+      <div *ngIf="project && !project.isArchived" class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>
     </div>
-    <app-reports-list [list]="project.reports" *ngIf="project && project.reports"></app-reports-list>
-    <app-members-list [list]="project.members" *ngIf="project && project.reports"></app-members-list>
+    <app-reports-list [list]="project.reports" *ngIf="project && project.reports" (deleteEvent)="onReportDeleteEvent($event)"></app-reports-list>
+    <app-members-list [list]="project.members" *ngIf="project && project.reports" (deleteEvent)="onMemberDeleteEvent($event)"></app-members-list>
     <div class="d-flex m-4">
-      <div class="btn btn-light m-auto" style="text-align:center" (click)="editProject(content1)"><h5>Edit project</h5></div>
+      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="onAddMemberToProject(content2)"><h5>Add member to project</h5></div>
     </div>
     <div class="d-flex m-4">
-      <div class="btn btn-light m-auto" style="text-align:center" (click)="deleteProject()"><h5>Delete project</h5></div>
+      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="editProject(content1)"><h5>Edit project</h5></div>
+    </div>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="archiveProject1(content4)"><h5>Archive project</h5></div>
+    </div>
+    <div class="d-flex m-4">
+      <div class="btn btn-light m-auto" style="text-align:center" (click)="onDeleteProject(content3)"><h5>Delete project</h5></div>
     </div>
   </div>
 </div>
@@ -42,30 +49,77 @@
 
 <ng-template #content1 let-modal>
   <div class="modal-header">
-    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Add project</h5>
+    <h5 class="modal-title m-auto" id="modal-basic-title1" style="text-align: center">Edit project</h5>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Project name</span>
+            <span class="input-group-text">Name</span>
           </div>
           <input type="text" [(ngModel)]="project.name" name="name" class="form-control">
         </div>
-        <div class="input-group mt-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Project leader</span>
-          </div>
-          <select class="custom-select ml-5" [value]="leaderID" (change)="changeLeaderID($event.target.value)">
-            <option *ngFor="let member of membersList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
-          </select>
-        </div>
+        <ng-select class="mt-3" [items]="membersList"
+                   bindValue="id"
+                   bindLabel="fullName"
+                   name="type"
+                   placeholder="Choose Leader"
+                   [(ngModel)]="leaderID">
+        </ng-select>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Anuluj</div>
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
     <div class="btn btn-primary" (click)="updateProject(modal)">Save</div>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title3">Add member to project</h5>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <ng-select class="mt-3" [items]="membersList"
+                   bindValue="id"
+                   bindLabel="fullName"
+                   name="type"
+                   placeholder="Choose Member"
+                   [(ngModel)]="memberIdToAdd">
+        </ng-select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary" (click)="addMemberToProject(modal)">Add</div>
+  </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title2">Do you really want to delete project?</h5>
+  </div>
+  <div class="modal-body">
+    <p>If you delete this project its data will disappear from the system</p>
+    <p *ngIf="!project.isArchived">You can archive it instead</p>
+
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary mr-auto" (click)="modal.close()">Cancel</div>
+    <div class="btn btn-primary m1-auto" *ngIf="!project.isArchived" (click)="archiveProject(modal, content4)">Archive</div>
+    <div class="btn btn-primary" (click)="deleteProject(modal)">Delete</div>
+  </div>
+</ng-template>
+
+<ng-template #content4 let-modal>
+  <div class="modal-header bg-success">
+    <h5 class="modal-title" id="modal-basic-title4">Project has been archived</h5>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-secondary m1-auto" (click)="modal.close()">Close</div>
   </div>
 </ng-template>

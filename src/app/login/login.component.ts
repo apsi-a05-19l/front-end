@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {serverAddress} from '../../assets/server.constant';
 import {Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import {AuthInterceptor} from '../AuthInterceptor'
 
 @Component({
   selector: 'app-login',
@@ -20,8 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private formBuilder: FormBuilder,
-              // private authInterceptor: AuthInterceptor
+              private formBuilder: FormBuilder
   ) {
   }
 

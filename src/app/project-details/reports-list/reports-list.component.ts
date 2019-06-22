@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ReportModel} from '../models/report.model';
 import {ProjectDetailsService} from '../services/project-details.service';
 import {Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ReportsListComponent implements OnInit {
   @Input() list: ReportModel[];
+  @Output() deleteEvent = new EventEmitter<number>();
   reportToEdit: ReportModel;
   image = '../../../../assets/kosz.jpg';
   image1 = '../../../../assets/pobrane.jpg';
@@ -20,8 +21,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   clickOnBin(reportID: number) {
-    this.service.deleteReport(reportID).subscribe();
-    this.router.navigate(['projects']);
+    this.deleteEvent.emit(reportID);
   }
 
   clickOnEdit(report: ReportModel, content) {
@@ -30,7 +30,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   updateReport(content) {
-    this.service.updateReport(this.reportToEdit).then((report) => console.log(report));
+    this.service.updateReport(this.reportToEdit).then();
     content.close();
   }
 }

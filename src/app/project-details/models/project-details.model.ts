@@ -7,4 +7,5 @@ export class ProjectDetailsModel {
   currentLeader: string;
   reports: ReportModel[];
   members: SimpleMemberModel[];
+  isArchived: boolean;
 }

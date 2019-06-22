@@ -9,6 +9,7 @@
         <th scope="col">#</th>
         <th scope="col">Name of members</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
         <th scope="row" style="width: 7%">{{ i + 1 }}</th>
         <td style="width: 65%">{{ member.name }} {{member.surname}}</td>
         <td scope="row" style="width: 28%"><div class="btn btn-primary mr-4" (click)="onMemberButtonClick(member)">See Member Details</div></td>
+        <td style="width: 4%"><img class="mr-auto" (click)="clickOnBin(member.id)" [src]="image" alt="Welcome image" width="20 pt"></td>
       </tr>
       </tbody>
     </table>

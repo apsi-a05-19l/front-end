@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MemberDetailsService} from './services/members-details.service';
 import {MemberDetailsModel} from './models/member-details.model';
 import {ActivitiesModel} from './models/activities.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {OrganisationStatusModel} from './models/organisation-status.model';
+import {PostMemberModel} from '../members/models/post-member.model';
 
 @Component({
   selector: 'app-member-details',
@@ -11,10 +13,17 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./member-details.component.css']
 })
 export class MemberDetailsComponent implements OnInit {
+  organisationStatusList: OrganisationStatusModel[];
   member: MemberDetailsModel;
   memberID: number;
   activitiesToEdit: ActivitiesModel;
-  constructor(private route: ActivatedRoute, private service: MemberDetailsService, private modalService: NgbModal, private router: Router) { }
+  memberToEdit: PostMemberModel;
+
+  constructor(private route: ActivatedRoute,
+              private service: MemberDetailsService,
+              private modalService: NgbModal,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.activitiesToEdit = new ActivitiesModel();
@@ -24,6 +33,8 @@ export class MemberDetailsComponent implements OnInit {
   fetchMemberInfo() {
     this.memberID = Number(this.route.snapshot.params.id);
     this.service.fetchMember(this.memberID).then((member: MemberDetailsModel) => this.member = member);
+    this.service.fetchOrganisationStatuses().then((statuses: OrganisationStatusModel[]) => this.organisationStatusList = statuses);
+    this.memberToEdit = new PostMemberModel();
   }
 
   addMemberActivity(content) {
@@ -36,24 +47,42 @@ export class MemberDetailsComponent implements OnInit {
 
   saveActivity(content) {
     this.activitiesToEdit.id = null;
-    this.service.saveActivity(this.activitiesToEdit, this.memberID).then((activity) => console.log(activity));
+    this.service.saveActivity(this.activitiesToEdit, this.memberID).then(() => this.fetchMemberInfo());
     content.close();
-    this.router.navigate(['members']);
   }
 
-  deleteMember() {
-    if (this.member.activities != null) {
-      for (const activity of this.member.activities) {
-        this.service.deleteActivity(activity.id).subscribe();
-      }
-    }
-    this.service.deleteMember(this.memberID).subscribe();
-    this.router.navigate(['members']);
+  onDeleteMember(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title2'});
+  }
+
+  deleteMember(content) {
+    this.service.deleteMember(this.memberID).then(() => this.router.navigate(['members']));
+    content.close();
+  }
+
+  onDeleteActivityEvent(activityId: number) {
+    this.service.deleteActivity(activityId).then(() => this.fetchMemberInfo());
   }
 
   updateMember(content) {
-    this.service.updateMember(this.member).then((member) => console.log(member));
+    this.memberToEdit.id = this.member.id;
+    this.memberToEdit.name = this.member.name;
+    this.memberToEdit.surname = this.member.surname;
+    this.memberToEdit.phone_number = this.member.phone_number;
+    this.memberToEdit.email = this.member.email;
+    this.memberToEdit.roleID = this.member.roleID;
+    this.service.updateMember(this.memberToEdit).then(() => this.fetchMemberInfo());
     content.close();
   }
 
+  archiveMember(content) {
+    this.memberToEdit.id = this.member.id;
+    this.memberToEdit.name = this.member.name;
+    this.memberToEdit.surname = this.member.surname;
+    this.memberToEdit.phone_number = this.member.phone_number;
+    this.memberToEdit.email = this.member.email;
+    this.memberToEdit.roleID = this.member.roleID;
+    this.service.archiveMember(this.memberToEdit).then(() => this.fetchMemberInfo());
+    content.close();
+  }
 }

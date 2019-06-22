@@ -5,6 +5,7 @@ import {ReportsListComponent} from './reports-list/reports-list.component';
 import {FormsModule} from '@angular/forms';
 import {MembersListComponent} from './members-list/members-list.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ]
 })
 export class ProjectDetailsModule { }
