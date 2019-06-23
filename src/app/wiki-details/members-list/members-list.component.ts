@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SimpleMemberModel} from '../../member-details/models/simple-member.model';
 import {Router} from '@angular/router';
 
@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 })
 export class MembersListComponent implements OnInit {
   @Input() list: SimpleMemberModel[];
+  @Output() deleteEvent = new EventEmitter<number>();
+  image = '../../../assets/kosz.jpg';
 
   constructor(private router: Router) {
   }
@@ -20,4 +22,7 @@ export class MembersListComponent implements OnInit {
     this.router.navigate(['member/' + member.id]);
   }
 
+  clickOnBin(activityID: number) {
+    this.deleteEvent.emit(activityID);
+  }
 }

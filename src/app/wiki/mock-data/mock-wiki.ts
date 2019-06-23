@@ -5,18 +5,18 @@ export const mockWiki: WikiModel[] = [
     id: 1,
     title: 'First article',
     topic_name: 'DATABASES',
-    author: 'John Doe',
+    authorID: 1,
   },
   {
     id: 2,
     title: 'Second article',
     topic_name: 'NETWORK_PROGRAMMING',
-    author: 'Jane Doe',
+    authorID: 2,
   },
   {
     id: 3,
     title: 'Third article',
     topic_name: 'MACHINE_LEARNING',
-    author: 'John Smith',
+    authorID: 3,
   }
 ];

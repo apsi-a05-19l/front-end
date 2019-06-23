@@ -14,12 +14,6 @@ export const mockWikiDetails: WikiDetailsModel[] = [
         text: 'MATLAB'
       }
     ],
-    Authors: [
-      {
-        id: 1,
-        name: 'hn',
-        surname: 'Doe'
-      }
-      ]
+    Author: 'John Doe'
   }
 ];

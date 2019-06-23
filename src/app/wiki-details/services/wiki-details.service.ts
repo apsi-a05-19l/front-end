@@ -5,6 +5,7 @@ import {serverAddress} from '../../../assets/server.constant';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {WikiModel} from '../../wiki/models/wiki.model';
+import {ReportModel} from '../../project-details/models/report.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,15 @@ export class WikiDetailsService {
   };
 
   fetchWiki(wikiId: number): Promise<any> {
-    return this.http.get(serverAddress + '/wiki/' + wikiId).toPromise();
+    return this.http.get(serverAddress + '/post/' + wikiId).toPromise();
   }
 
   fetchAuthorLists(): Promise<any> {
     return this.http.get(serverAddress + '/members').toPromise();
+  }
+
+  fetchTopicLists(): Promise<any> {
+    return this.http.get(serverAddress + '/topic').toPromise();
   }
 
   // saveReport(reportToSave: ReportModel, projectId: number): Promise<any> {
@@ -47,14 +52,18 @@ export class WikiDetailsService {
   // }
 
   deleteWiki(wikiID: number) {
-    return this.http.delete<void>(serverAddress + '/wiki/' + wikiID).pipe(catchError(this.handleError));
+    return this.http.delete<void>(serverAddress + '/post/' + wikiID).pipe(catchError(this.handleError));
   }
 
   // updateReport(reportToUpdate: ReportModel): Promise<ReportModel> {
   //   return Promise.resolve(reportToUpdate);
   // }
 
-  updateWiki(wikiToSave: WikiModel, authorID: number): Promise<any> {
+  saveTopic(topicToSave: TopicModel, wikiId: number): Promise<any> {
+    return this.http.post(serverAddress + '/post/' + wikiId, topicToSave).toPromise();
+  }
+
+  updateWiki(wikiToSave: WikiModel): Promise<any> {
     return Promise.resolve(wikiToSave);
   }
 }

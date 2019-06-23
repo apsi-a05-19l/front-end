@@ -12,15 +12,19 @@ export class WikiService {
   constructor(private http: HttpClient, private router: Router) { }
 
   fetchWikiList(): Promise<any> {
-    return this.http.get(serverAddress + '/wiki')
-      .toPromise();
+    return this.http.get(serverAddress + '/post').toPromise();
+  }
+
+  fetchTopicList(): Promise<any> {
+    return this.http.get(serverAddress + '/topic').toPromise();
   }
 
   fetchAuthorLists(): Promise<any> {
     return this.http.get(serverAddress + '/members').toPromise();
   }
 
-  saveWiki(wikiToSave: WikiModel, AuthorID: number): Promise<any> {
-    return this.http.post(serverAddress + '/wiki/' + AuthorID, wikiToSave).toPromise();
+  saveWiki(wikiToSave: WikiModel): Promise<any> {
+    return this.http.post(serverAddress + '/post/', wikiToSave).toPromise();
   }
+
 }

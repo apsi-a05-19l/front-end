@@ -23,7 +23,7 @@
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">Wiki name</span>
+            <span class="input-group-text">Wiki title</span>
           </div>
           <input type="text" [(ngModel)]="wikiToEdit.title" name="name" class="form-control">
         </div>
@@ -33,6 +33,14 @@
           </div>
           <select class="custom-select ml-5" [value]="AuthorID" (change)="changeAuthorID($event.target.value)">
             <option *ngFor="let member of AuthorList" [value]="member.id"> {{ member.name }} {{ member.surname }}</option>
+          </select>
+        </div>
+        <div class="input-group mt-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Wiki Topic</span>
+          </div>
+          <select class="custom-select ml-5" [value]="post_topic" (change)="changeTopic($event.target.value)">
+            <option *ngFor="let topic of TopicList" [value]="topic.id"> {{ topic.text }} </option>
           </select>
         </div>
       </div>

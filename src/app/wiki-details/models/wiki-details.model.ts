@@ -5,5 +5,5 @@ export class WikiDetailsModel {
   id: number;
   title: string;
   post_topics: TopicModel[];
-  Authors: SimpleMemberModel[];
+  Author: string;
 }

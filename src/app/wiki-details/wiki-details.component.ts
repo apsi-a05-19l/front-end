@@ -16,12 +16,14 @@ export class WikiDetailsComponent implements OnInit {
   wikiId: number;
   topicsList: TopicModel[];
   authorsList: MemberModel[];
+  topicToEdit: TopicModel;
 
   constructor(private route: ActivatedRoute, private service: WikiDetailsService,
               private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
     this.service.fetchAuthorLists().then((list: MemberModel[]) => this.authorsList = list);
+    this.service.fetchTopicLists().then((list: TopicModel[]) => this.topicsList = list);
     this.fetchWikiInfo(); }
 
   fetchWikiInfo() {
@@ -29,28 +31,29 @@ export class WikiDetailsComponent implements OnInit {
     this.service.fetchWiki(this.wikiId)
       .then((wiki: WikiDetailsModel) => {
         this.wiki = wiki;
-        this.wiki.Authors = wiki.Authors;
+        this.wiki.Author = wiki.Author;
+        this.wiki.post_topics = wiki.post_topics;
       });
   }
 
-  addProjectTopic(content) {
+  addWikiTopic(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  editProject(content) {
+  editWiki(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title1'});
   }
 
-  // saveReport(content) {
-  //   this.service.saveWiki(this.reportToEdit, this.projectId).then((report) => console.log(report));
-  //   content.close();
-  //   this.router.navigate(['projects']);
-  // }
+  saveTopic(content) {
+    this.service.saveTopic(this.topicToEdit, this.wikiId).then(() => this.fetchWikiInfo());
+    content.close();
+  }
 
   deleteWiki() {
     this.service.deleteWiki(this.wikiId).subscribe();
-    this.router.navigate(['wiki']);
+    this.router.navigate(['post']);
   }
+
 
   // updateWiki(content) {
   //   this.service.updateWiki(this.wiki, this.authorID).then((wiki) => console.log(wiki));

@@ -1,4 +1,4 @@
-<div clas  post_topics: TopicModel[];s="d-flex mt-5">
+<div class="d-flex mt-5">
   <div class="card mx-auto text-dark" style="width: 80%;">
     <div class="card-header d-flex">
       <h5 class="card-title mx-auto">Wiki Authors</h5>
@@ -9,6 +9,7 @@
         <th scope="col">#</th>
         <th scope="col">Name of authors</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
         <th scope="row" style="width: 7%">{{ i + 1 }}</th>
         <td style="width: 65%">{{ member.name }} {{member.surname}}</td>
         <td scope="row" style="width: 28%"><div class="btn btn-primary mr-4" (click)="onMemberButtonClick(member)">See Author Details</div></td>
+        <td style="width: 4%"><img class="mr-auto" (click)="clickOnBin(member.id)" [src]="image" alt="Welcome image" width="20 pt"></td>
       </tr>
       </tbody>
     </table>
