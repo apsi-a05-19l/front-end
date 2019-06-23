@@ -12,7 +12,7 @@ export class WikiService {
   constructor(private http: HttpClient, private router: Router) { }
 
   fetchWikiList(): Promise<any> {
-    return this.http.get(serverAddress + '/wiki')
+    return this.http.get(serverAddress + '/post')
       .toPromise();
   }
 
@@ -21,6 +21,6 @@ export class WikiService {
   }
 
   saveWiki(wikiToSave: WikiModel, AuthorID: number): Promise<any> {
-    return this.http.post(serverAddress + '/wiki/' + AuthorID, wikiToSave).toPromise();
+    return this.http.post(serverAddress + '/post/', wikiToSave).toPromise();
   }
 }

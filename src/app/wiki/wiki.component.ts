@@ -33,8 +33,8 @@ export class WikiComponent implements OnInit {
   }
 
   saveWiki(content) {
-    this.service.saveWiki(this.wikiToEdit, this.AuthorID).then((wiki) => console.log(wiki));
-    content.close();
-    this.router.navigate(['']);
+    // this.service.saveWiki(this.wikiToEdit, this.AuthorID).then((wiki) => console.log(wiki));
+    // content.close();
+    // this.router.navigate(['']);
   }
 }

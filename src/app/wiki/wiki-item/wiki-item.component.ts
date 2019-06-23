@@ -15,6 +15,6 @@ export class WikiItemComponent implements OnInit {
   }
 
   onWikiButtonClick() {
-    this.router.navigate(['wiki/' + this.wiki.id]);
+    // this.router.navigate(['wiki/' + this.wiki.id]);
   }
 }
