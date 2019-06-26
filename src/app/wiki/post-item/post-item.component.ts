@@ -3,7 +3,7 @@ import {PostModel} from '../models/postModel';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-wiki-item',
+  selector: 'app-post-item',
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.css']
 })
