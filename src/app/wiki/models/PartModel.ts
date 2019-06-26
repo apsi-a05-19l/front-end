@@ -7,7 +7,7 @@ export class PartModel {
 
   contents: string;
 
-  links: LinkModel[];
+  links: LinkModel[] = [];
 
   post_id: number;
 }

@@ -1,6 +1,10 @@
 <div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.5%">
   <div class="card-header d-flex">
     <h1 class="card-title mx-auto mt-3">Create your post</h1>
+    <div class="btn btn-light ml-auto" (click)="addPart()">Add next post part</div>
+    <div class="btn btn-light ml-auto" (click)="removeLastPart()">Remove last post part</div>
+    <div class="btn btn-light ml-auto" (click)="savePost()">Save Post</div>
+
   </div>
   <div class="card-body">
     <form>
@@ -25,7 +29,32 @@
         </ng-select>
       </div>
     </form>
-<!--    <app-parts-list [list]="post.parts" *ngIf="post && post.parts" ></app-parts-list>-->
+    <div class="d-flex">
+      <div class="card mx-auto text-dark" style="width: 100%;">
+        <div class="card-body" *ngFor="let part of editedPost.parts">
+          <form>
+            <div class="card mx-auto text-dark bg-secondary" style="width: 100%;">
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Header</span>
+                    </div>
+                    <input [(ngModel)]="part.header" name="text" class="form-control">
+                  </div>
+                  <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Content</span>
+                    </div>
+                    <textarea [(ngModel)]="part.contents" name="text" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

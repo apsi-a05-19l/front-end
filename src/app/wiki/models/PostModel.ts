@@ -5,5 +5,5 @@ export class PostModel {
   title: string;
   postTopic: string;
   authorId: number;
-  parts: PartModel[];
+  parts: PartModel[] = [];
 }

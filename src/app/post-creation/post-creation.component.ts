@@ -4,6 +4,8 @@ import {MemberModel} from '../members/models/member.model';
 import {MembersService} from '../members/services/members.service';
 import {SelectMemberModel} from '../projects/models/SelectMemberModel';
 import {WikiService} from '../wiki/services/wiki.service';
+import {PartModel} from '../wiki/models/PartModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-creation',
@@ -15,7 +17,7 @@ export class PostCreationComponent implements OnInit {
   membersList: SelectMemberModel[];
   membersfetched = false;
   topicList = [];
-  constructor(private membersService: MembersService, private service: WikiService) { }
+  constructor(private membersService: MembersService, private service: WikiService, private router: Router) { }
 
   ngOnInit() {
     this.editedPost = new PostModel();
@@ -26,4 +28,15 @@ export class PostCreationComponent implements OnInit {
     this.service.fetchTopicsList().then((list: string[]) => this.topicList = list);
   }
 
+  addPart() {
+    this.editedPost.parts.push(new PartModel());
+  }
+
+  removeLastPart() {
+    this.editedPost.parts.pop();
+  }
+
+  savePost() {
+    this.service.saveWiki(this.editedPost).then(() => this.router.navigate(['/wiki']));
+  }
 }

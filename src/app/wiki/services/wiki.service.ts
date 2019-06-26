@@ -29,7 +29,7 @@ export class WikiService {
     return this.http.get(serverAddress + '/post/topic').toPromise();
   }
 
-  saveWiki(wikiToSave: PostModel, AuthorID: number): Promise<any> {
-    return this.http.post(serverAddress + '/post/', wikiToSave).toPromise();
+  saveWiki(wikiToSave: PostModel): Promise<any> {
+    return this.http.post(serverAddress + '/post', wikiToSave).toPromise();
   }
 }
