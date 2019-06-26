@@ -15,6 +15,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {WikiModule} from './wiki/wiki.module';
 import {PostDetailsModule} from './post-details/post-details.module';
+import {PostCreationModule} from './post-creation/post-creation.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {PostDetailsModule} from './post-details/post-details.module';
     ReactiveFormsModule,
     WikiModule,
     NgSelectModule,
-    PostDetailsModule
+    PostDetailsModule,
+    PostCreationModule
   ],
   providers: [
     {

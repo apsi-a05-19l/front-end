@@ -8,6 +8,7 @@ import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {LoginComponent} from './login/login.component';
 import {WikiComponent} from './wiki/wiki.component';
 import {PostDetailsComponent} from './post-details/post-details.component';
+import {PostCreationComponent} from './post-creation/post-creation.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'wiki/:id',
     component: PostDetailsComponent,
+  },
+  {
+    path: 'post-creation',
+    component: PostCreationComponent,
   }
 ];
 
