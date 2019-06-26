@@ -1,6 +1,7 @@
 <div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.5%">
   <div class="card-header d-flex">
     <h1 *ngIf="post" class="card-title mx-auto mt-3">{{post.title}}</h1>
+    <div class="btn btn-light ml-auto" (click)="deletePost()">Delete post</div>
   </div>
   <div class="card-body">
     <div class="d-flex mb-5">

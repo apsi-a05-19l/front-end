@@ -21,6 +21,11 @@ export class WikiService {
       .toPromise();
   }
 
+  deletePost(id: number): Promise<any> {
+    return this.http.delete(serverAddress + '/post/' + id)
+      .toPromise();
+  }
+
   fetchAuthorLists(): Promise<any> {
     return this.http.get(serverAddress + '/members').toPromise();
   }
