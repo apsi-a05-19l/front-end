@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {Router} from '@angular/router';
-import {PostModel} from '../models/postModel';
+import {PostModel} from '../models/PostModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,11 @@ export class WikiService {
 
   fetchPostsList(): Promise<any> {
     return this.http.get(serverAddress + '/post')
+      .toPromise();
+  }
+
+  fetchPostElement(id: number): Promise<any> {
+    return this.http.get(serverAddress + '/post/' + id)
       .toPromise();
   }
 

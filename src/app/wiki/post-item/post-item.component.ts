@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PostModel} from '../models/postModel';
+import {PostModel} from '../models/PostModel';
 import {Router} from '@angular/router';
 
 @Component({

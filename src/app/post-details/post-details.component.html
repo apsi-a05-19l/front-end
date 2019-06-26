@@ -1,3 +1,30 @@
 <p>
   post-details works!
 </p>
+
+<div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.5%">
+  <div class="card-header d-flex">
+    <h1 *ngIf="post" class="card-title mx-auto mt-3">{{post.title}}</h1>
+  </div>
+<!--  <div class="card-body">-->
+<!--    <div class="d-flex mb-5">-->
+<!--      <h2 *ngIf="project && !project.isArchived" class="mx-auto mt-3">Current project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>-->
+<!--      <h2 *ngIf="project && project.isArchived" class="mx-auto mt-3">Last project leader: <span class="badge badge-secondary">{{project.currentLeader}}</span></h2>-->
+<!--      <div *ngIf="project && !project.isArchived" class="btn btn-light ml-auto" (click)="addProjectReport(content)"><h4>Add Project Report</h4></div>-->
+<!--    </div>-->
+<!--    <app-reports-list [list]="project.reports" *ngIf="project && project.reports" (deleteEvent)="onReportDeleteEvent($event)"></app-reports-list>-->
+<!--    <app-members-list [list]="project.members" *ngIf="project && project.reports" (deleteEvent)="onMemberDeleteEvent($event)"></app-members-list>-->
+<!--    <div class="d-flex m-4">-->
+<!--      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="onAddMemberToProject(content2)"><h5>Add member to project</h5></div>-->
+<!--    </div>-->
+<!--    <div class="d-flex m-4">-->
+<!--      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="editProject(content1)"><h5>Edit project</h5></div>-->
+<!--    </div>-->
+<!--    <div class="d-flex m-4">-->
+<!--      <div class="btn btn-light m-auto" style="text-align:center" *ngIf="project && !project.isArchived" (click)="archiveProject1(content4)"><h5>Archive project</h5></div>-->
+<!--    </div>-->
+<!--    <div class="d-flex m-4">-->
+<!--      <div class="btn btn-light m-auto" style="text-align:center" (click)="onDeleteProject(content3)"><h5>Delete project</h5></div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>

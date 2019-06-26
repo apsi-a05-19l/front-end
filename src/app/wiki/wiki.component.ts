@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PostModel} from './models/postModel';
+import {PostModel} from './models/PostModel';
 import {WikiService} from './services/wiki.service';
 import {MemberModel} from '../members/models/member.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
