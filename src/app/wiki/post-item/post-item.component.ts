@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {WikiModel} from '../models/wiki.model';
+import {PostModel} from '../models/postModel';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-wiki-item',
-  templateUrl: './wiki-item.component.html',
-  styleUrls: ['./wiki-item.component.css']
+  templateUrl: './post-item.component.html',
+  styleUrls: ['./post-item.component.css']
 })
-export class WikiItemComponent implements OnInit {
-  @Input() wiki: WikiModel;
+export class PostItemComponent implements OnInit {
+  @Input() wiki: PostModel;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -18,3 +18,4 @@ export class WikiItemComponent implements OnInit {
     // this.router.navigate(['wiki/' + this.wiki.id]);
   }
 }
+

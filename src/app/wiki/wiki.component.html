@@ -3,13 +3,13 @@
     <div class="card-header">
       <div id="gridContainer">
         <div class="row">
-          <div class="col-10"> <h4 class="card-title mr-auto ml-4">Available Wikis</h4> </div>
+          <div class="col-10"> <h4 class="card-title mr-auto ml-4">Recent Posts</h4> </div>
           <div class="col-2"> <div class="btn btn-primary m-auto" style="text-align:center" (click)="onAddWikiButtonClick(content)"><h5>Add wiki</h5></div> </div>
         </div>
       </div>
     </div>
-    <div *ngFor="let wiki of wikiList">
-      <app-wiki-item [wiki]="wiki"></app-wiki-item>
+    <div *ngFor="let post of postList">
+      <app-wiki-item [wiki]="post"></app-wiki-item>
     </div>
   </div>
 </div>

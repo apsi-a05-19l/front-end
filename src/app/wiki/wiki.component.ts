@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {WikiModel} from './models/wiki.model';
+import {PostModel} from './models/postModel';
 import {WikiService} from './services/wiki.service';
-import {WikiDetailsModel} from '../wiki-details/models/wiki-details.model';
 import {MemberModel} from '../members/models/member.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
@@ -12,16 +11,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./wiki.component.css']
 })
 export class WikiComponent implements OnInit {
-  wikiList: WikiModel[];
+  postList: PostModel[];
   AuthorList: MemberModel[];
-  wikiToEdit: WikiModel;
+  wikiToEdit: PostModel;
   AuthorID: number;
   constructor(private service: WikiService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
-    this.service.fetchWikiList().then((list: WikiModel[]) => this.wikiList = list);
+    this.service.fetchPostsList().then((list: PostModel[]) => this.postList = list);
     this.service.fetchAuthorLists().then((list: MemberModel[]) => this.AuthorList = list);
-    this.wikiToEdit = new WikiModel();
+    this.wikiToEdit = new PostModel();
   }
 
   onAddWikiButtonClick(content) {

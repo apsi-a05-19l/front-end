@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {serverAddress} from '../../../assets/server.constant';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
-import {WikiModel} from '../../wiki/models/wiki.model';
+import {PostModel} from '../../wiki/models/postModel';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,7 @@ export class WikiDetailsService {
   //   return Promise.resolve(reportToUpdate);
   // }
 
-  updateWiki(wikiToSave: WikiModel, authorID: number): Promise<any> {
+  updateWiki(wikiToSave: PostModel, authorID: number): Promise<any> {
     return Promise.resolve(wikiToSave);
   }
 }

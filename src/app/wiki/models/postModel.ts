@@ -1,5 +1,5 @@
 
-export class WikiModel {
+export class PostModel {
   id: number;
   title: string;
   topic_name: string;

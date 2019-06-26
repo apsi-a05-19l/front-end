@@ -1,6 +1,6 @@
-import {WikiModel} from '../models/wiki.model';
+import {PostModel} from '../models/postModel';
 
-export const mockWiki: WikiModel[] = [
+export const mockWiki: PostModel[] = [
   {
     id: 1,
     title: 'First article',
