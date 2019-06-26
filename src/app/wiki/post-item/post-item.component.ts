@@ -8,14 +8,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./post-item.component.css']
 })
 export class PostItemComponent implements OnInit {
-  @Input() wiki: PostModel;
+  @Input() post: PostModel;
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   onWikiButtonClick() {
-    // this.router.navigate(['wiki/' + this.wiki.id]);
+     this.router.navigate(['wiki/' + this.post.id]);
   }
 }
 

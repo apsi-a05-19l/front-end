@@ -13,15 +13,15 @@ import {AuthInterceptor} from './AuthInterceptor';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { WikiComponent } from './wiki/wiki.component';
 import {WikiModule} from './wiki/wiki.module';
+import {PostDetailsModule} from './post-details/post-details.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     WelcomePageComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ import {WikiModule} from './wiki/wiki.module';
     FormsModule,
     ReactiveFormsModule,
     WikiModule,
-    NgSelectModule
+    NgSelectModule,
+    PostDetailsModule
   ],
   providers: [
     {

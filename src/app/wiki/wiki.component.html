@@ -4,12 +4,12 @@
       <div id="gridContainer">
         <div class="row">
           <div class="col-10"> <h4 class="card-title mr-auto ml-4">Recent Posts</h4> </div>
-          <div class="col-2"> <div class="btn btn-primary m-auto" style="text-align:center" (click)="onAddWikiButtonClick(content)"><h5>Add wiki</h5></div> </div>
+          <div class="col-2"> <div class="btn btn-primary m-auto" style="text-align:center" (click)="onAddWikiButtonClick(content)"><h5>Add post</h5></div> </div>
         </div>
       </div>
     </div>
     <div *ngFor="let post of postList">
-      <app-post-item [wiki]="post"></app-post-item>
+      <app-post-item [post]="post"></app-post-item>
     </div>
   </div>
 </div>
