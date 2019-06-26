@@ -25,6 +25,10 @@ export class WikiService {
     return this.http.get(serverAddress + '/members').toPromise();
   }
 
+  fetchTopicsList(): Promise<any> {
+    return this.http.get(serverAddress + '/post/topic').toPromise();
+  }
+
   saveWiki(wikiToSave: PostModel, AuthorID: number): Promise<any> {
     return this.http.post(serverAddress + '/post/', wikiToSave).toPromise();
   }

@@ -1,3 +1,32 @@
-<p>
-  post-creation works!
-</p>
+<div class="card text-white bg-primary" style="margin-left: 2.5%; margin-right: 2.5%">
+  <div class="card-header d-flex">
+    <h1 class="card-title mx-auto mt-3">Create your post</h1>
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Title</span>
+          </div>
+          <input type="text" [(ngModel)]="editedPost.title" name="title" class="form-control">
+        </div>
+        <ng-select *ngIf="membersfetched" class="mt-3" [items]="membersList"
+                   bindValue="id"
+                   bindLabel="fullName"
+                   name="type"
+                   placeholder="Choose Author"
+                   [(ngModel)]="editedPost.authorId">
+        </ng-select>
+        <ng-select class="mt-3" [items]="topicList"
+                   name="type"
+                   placeholder="Choose Topic"
+                   [(ngModel)]="editedPost.postTopic">
+        </ng-select>
+      </div>
+    </form>
+<!--    <app-parts-list [list]="post.parts" *ngIf="post && post.parts" ></app-parts-list>-->
+  </div>
+</div>
+
+
